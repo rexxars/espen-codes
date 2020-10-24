@@ -1,0 +1,41 @@
+.root {
+  padding-left: 20px;
+  flex: 1;
+}
+
+.name {
+  font-size: 1.4em;
+  white-space: nowrap;
+}
+
+.subtitle {
+  margin: 4.5px 0;
+  display: inline-block;
+  padding-left: 10px;
+  font-weight: normal;
+  text-align: left;
+}
+
+.subtitle > * {
+  display: flex;
+}
+
+.subtitle a {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.subtitle a:hover,
+.subtitle a:focus {
+  color: #fff;
+}
+
+.subtitle a:focus {
+  outline-style: solid;
+  outline-color: #fff;
+  outline-width: 1.5px;
+}
+
+.subtitle svg {
+  height: 1.25em;
+  margin-right: 5px;
+}
