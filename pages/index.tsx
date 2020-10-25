@@ -1,10 +1,13 @@
 import * as React from 'react'
-import AboutMe from '../components/AboutMe'
+import Avatar from '../components/Avatar'
+import {Intro} from '../components/Intro'
+import Layout from '../components/Layout'
 
 export default function IndexPage() {
   return (
-    <>
-      <AboutMe />
-    </>
+    <Layout>
+      <Avatar />
+      <Intro />
+    </Layout>
   )
 }

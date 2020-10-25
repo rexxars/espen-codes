@@ -1,6 +1,6 @@
 import React from 'react'
-import {useRouter} from 'next/router'
 import Link from 'next/link'
+import {useRouter} from 'next/router'
 import styles from './Menu.module.css'
 
 export default function Menu() {
@@ -8,22 +8,22 @@ export default function Menu() {
     <nav className={styles.nav}>
       <ul>
         <li>
-          <ActiveLink href="/">Posts</ActiveLink>
+          <NavLink href="/">About</NavLink>
         </li>
 
         <li>
-          <ActiveLink href="/projects">Projects</ActiveLink>
+          <NavLink href="/projects">Projects</NavLink>
         </li>
 
         <li>
-          <ActiveLink href="/resume">Résumé</ActiveLink>
+          <NavLink href="/resume">Résumé</NavLink>
         </li>
       </ul>
     </nav>
   )
 }
 
-const ActiveLink = ({children, href}) => {
+const NavLink = ({children, href}) => {
   const {asPath} = useRouter()
   const anchorClass = asPath === href ? styles.activeLink : styles.link
 

@@ -1,0 +1,26 @@
+.root {
+  composes: section from './shared.module.css';
+}
+
+.job {
+  display: flex;
+  margin: 40px 0 20px 0;
+}
+
+.company {
+  flex: 1;
+}
+
+.companyName {
+  composes: subheader from './shared.module.css';
+  display: inline;
+}
+
+.date {
+  text-align: right;
+}
+
+.highlights {
+  list-style-type: disc;
+  margin-left: 35px;
+}

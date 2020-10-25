@@ -1,0 +1,39 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 2.5em;
+}
+
+.heading {
+  font-size: 4rem;
+}
+
+.subheading {
+  font-size: 2.25rem;
+  max-width: 500px; /* For optimal word wrapping :shrugs: */
+}
+
+.aboutMe {
+  line-height: 1.5rem;
+}
+
+.nobreak {
+  white-space: nowrap;
+}
+
+/* "Mobile" */
+@media only screen and (max-width: 500px) {
+  .root {
+    margin-top: 1em;
+    padding: 0 0.5em;
+  }
+
+  .heading {
+    text-align: center;
+  }
+
+  .subheading {
+    display: none;
+  }
+}

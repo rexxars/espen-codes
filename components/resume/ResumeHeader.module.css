@@ -1,0 +1,28 @@
+.root {
+  composes: section from './shared.module.css';
+
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+.row {
+  display: flex;
+}
+
+.row > * {
+  flex: 0.5;
+}
+
+.label {
+  margin-top: 5px;
+  color: #878787;
+  font-weight: normal;
+}
+
+.icon {
+  margin-right: 7px;
+}
+
+.location {
+  font-size: 1rem;
+}

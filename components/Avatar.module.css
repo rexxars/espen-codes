@@ -1,0 +1,38 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.picture {
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
+
+.img {
+  position: absolute;
+  border-radius: 50%;
+  transition: opacity 0.3s linear;
+  width: 100%;
+}
+
+svg.img {
+  transition: opacity 3s ease-out;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+/* "Mobile" */
+@media only screen and (max-width: 500px) {
+  .picture {
+    width: 200px;
+    height: 200px;
+  }
+}

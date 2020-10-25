@@ -1,8 +1,20 @@
 .root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .main {
   padding: 10px;
-  max-width: 800px;
+  max-width: 1024px;
   margin: 0 auto;
+  display: flex;
+  flex: 1;
+}
+
+/* "Mobile" */
+@media only screen and (max-width: 500px) {
+  .main {
+    flex-direction: column;
+  }
 }

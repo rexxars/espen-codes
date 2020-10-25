@@ -1,0 +1,15 @@
+.root {
+  composes: root from './ResumeHeader.module.css';
+}
+
+.row {
+  composes: row from './ResumeHeader.module.css';
+}
+
+.spacedList {
+  margin-bottom: 50px;
+}
+
+.row > section:not(:last-child) {
+  margin-right: 50px;
+}

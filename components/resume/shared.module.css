@@ -1,0 +1,17 @@
+.section {
+  padding: 50px 50px 10px 50px;
+}
+
+.heading {
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.subheading {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.spacedListItem {
+  margin-bottom: 10px;
+}

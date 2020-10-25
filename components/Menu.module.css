@@ -1,0 +1,38 @@
+.nav {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav li {
+  text-align: center;
+  display: inline-block;
+}
+
+.nav li:not(:last-child) a {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.link {
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px;
+  text-align: center;
+}
+
+.link:focus,
+.link:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.activeLink {
+  composes: link;
+  background: #fff;
+  color: #c0392b;
+}
+
+.activeLink:hover {
+  background: #fff;
+}

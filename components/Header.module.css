@@ -1,0 +1,38 @@
+.root {
+  background: #c0392b;
+  color: #fff;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.siteName {
+  flex: 0.1;
+  font-weight: normal;
+  font-size: 1.2rem;
+}
+
+/* "Mobile" */
+@media only screen and (max-width: 500px) {
+  .siteName {
+    display: flex;
+    flex-direction: column;
+    padding: 7.5px 0;
+  }
+
+  .optional {
+    display: none;
+  }
+}
+
+/* Print! (For resume, primarily) */
+@media print {
+  .root {
+    display: none;
+  }
+}

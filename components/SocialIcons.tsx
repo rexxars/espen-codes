@@ -1,13 +1,13 @@
 import * as React from 'react'
 import Link from 'next/link'
-import GitHubIcon from '../icons/GitHubIcon'
-import TwitterIcon from '../icons/TwitterIcon'
-import SchnauzerIcon from '../icons/SchnauzerIcon'
-import styles from './SocialMenu.module.css'
+import GitHubIcon from './icons/GitHubIcon'
+import TwitterIcon from './icons/TwitterIcon'
+import SchnauzerIcon from './icons/SchnauzerIcon'
+import styles from './SocialIcons.module.css'
 
-export default function SocialMenu() {
+export default function SocialIcons() {
   return (
-    <ul className={styles.socialMenu}>
+    <ul className={styles.icons}>
       <li>
         <a href="https://github.com/rexxars/">
           <GitHubIcon />
