@@ -23,12 +23,12 @@ export async function getStaticProps({params}) {
 }
 
 export async function getStaticPaths() {
-  const paths = await sanityClient.fetch(
-    `*[_type == "project" && defined(slug.current) && _id in path("*")][] {"slug": slug.current}`,
+  const slugs = await sanityClient.fetch(
+    `*[_type == "project" && defined(slug.current) && _id in path("*")][].slug.current`,
   )
 
   return {
-    paths: paths.map((slug) => ({params: {slug}})),
+    paths: slugs.map((slug) => ({params: {slug}})),
     fallback: true,
   }
 }
