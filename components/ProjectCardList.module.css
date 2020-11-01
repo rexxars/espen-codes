@@ -3,3 +3,11 @@
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 2rem;
 }
+
+/* "Mobile" */
+@media only screen and (max-width: 500px) {
+  .list {
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+  }
+}
