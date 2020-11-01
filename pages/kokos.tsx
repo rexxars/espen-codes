@@ -1,4 +1,5 @@
 import * as React from 'react'
+import Head from 'next/head'
 import {Block} from '@sanity/types'
 import {groq} from 'next-sanity'
 import {Kokos} from '../components/Kokos'
@@ -19,6 +20,9 @@ export async function getStaticProps() {
 export default function KokosPage({kokos}: {kokos: {bio: Block[]}}) {
   return (
     <Layout>
+      <Head>
+        <title key="title">Kokos - Espen.Codes</title>
+      </Head>
       <Kokos bio={kokos.bio} />
     </Layout>
   )

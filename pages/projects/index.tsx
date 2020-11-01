@@ -29,7 +29,7 @@ export default function ProjectsPage({projects = []}) {
   return (
     <Layout>
       <Head>
-        <title>Projects - Espen.Codes</title>
+        <title key="title">Projects - Espen.Codes</title>
       </Head>
       <ProjectCardList projects={projects} />
     </Layout>

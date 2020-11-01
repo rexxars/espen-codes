@@ -1,4 +1,5 @@
 import * as React from 'react'
+import Head from 'next/head'
 import {groq} from 'next-sanity'
 import {Layout} from '../components/Layout'
 import {JsonResume, Resume} from '../components/resume'
@@ -11,6 +12,9 @@ export async function getStaticProps() {
 export default function ResumePage(props: {resume: JsonResume}) {
   return (
     <Layout>
+      <Head>
+        <title key="title">Résumé - Espen.Codes</title>
+      </Head>
       <Resume resume={props.resume} />
     </Layout>
   )

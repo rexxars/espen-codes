@@ -17,6 +17,7 @@
   font-size: 1.6rem;
   color: #fff;
   text-decoration: none;
+  margin-top: -3px; /* Can't figure out why it's not "centered" */
 }
 
 /* "Mobile" */

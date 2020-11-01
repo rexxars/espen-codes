@@ -28,7 +28,8 @@ export function Intro() {
           <a>miniature schnauzer</a>
         </Link>{' '}
         takes me on walks and keeps me healthy. Sometimes I make (and write about) silly{' '}
-        <span className={styles.nobreak}>(and not so silly)</span> side-projects.
+        <span className={styles.nobreak}>(and not so silly)</span>{' '}
+        <Link href="/projects">projects</Link>.
       </p>
 
       <SocialIcons />
