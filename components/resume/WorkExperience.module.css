@@ -4,7 +4,11 @@
 
 .job {
   display: flex;
-  margin: 40px 0 20px 0;
+  margin: 40px 0 0 0;
+}
+
+.position {
+  margin-bottom: 20px;
 }
 
 .company {
@@ -23,4 +27,16 @@
 .highlights {
   list-style-type: disc;
   margin-left: 35px;
+}
+
+/* "Mobile" */
+@media only screen and (max-width: 500px) {
+  .job {
+    flex-direction: column-reverse;
+  }
+
+  .date {
+    text-align: left;
+    font-size: 0.9rem;
+  }
 }

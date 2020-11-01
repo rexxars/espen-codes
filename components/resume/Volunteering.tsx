@@ -17,7 +17,6 @@ export function Volunteering({volunteer = []}: {volunteer: JsonResume['volunteer
               <div className={styles.job}>
                 <div className={styles.company}>
                   <h3 className={styles.companyName}>{job.organization}</h3>
-                  <span className={styles.position}> - {job.position}</span>
                 </div>
                 <div className={styles.date}>
                   <time dateTime={job.startDate}>{formatDate(job.startDate)}</time>
@@ -25,6 +24,7 @@ export function Volunteering({volunteer = []}: {volunteer: JsonResume['volunteer
                   <time dateTime={job.endDate}>{formatDate(job.endDate)}</time>
                 </div>
               </div>
+              <div className={styles.position}> {job.position}</div>
 
               {job.summary && <p className={styles.summary}>{job.summary}</p>}
             </li>

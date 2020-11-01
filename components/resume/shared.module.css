@@ -15,3 +15,10 @@
 .spacedListItem {
   margin-bottom: 10px;
 }
+
+/* "Mobile" */
+@media only screen and (max-width: 500px) {
+  .section {
+    padding: 20px 10px 10px 10px;
+  }
+}

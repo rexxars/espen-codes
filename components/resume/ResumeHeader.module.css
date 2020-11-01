@@ -13,6 +13,9 @@
   flex: 0.5;
 }
 
+.contact {
+}
+
 .label {
   margin-top: 5px;
   color: #878787;
@@ -25,4 +28,20 @@
 
 .location {
   font-size: 1rem;
+}
+
+/* "Mobile" */
+@media only screen and (max-width: 500px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .row > * {
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+
+  .contact {
+    font-size: 0.9rem;
+  }
 }

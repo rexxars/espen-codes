@@ -17,7 +17,6 @@ export function WorkExperience({work = []}: {work: JsonResume['work']}) {
               <div className={styles.job}>
                 <div className={styles.company}>
                   <h3 className={styles.companyName}>{job.company}</h3>
-                  <span className={styles.position}> - {job.position}</span>
                 </div>
                 <div className={styles.date}>
                   <time dateTime={job.startDate}>{formatDate(job.startDate)}</time>
@@ -25,6 +24,8 @@ export function WorkExperience({work = []}: {work: JsonResume['work']}) {
                   <time dateTime={job.endDate}>{formatDate(job.endDate)}</time>
                 </div>
               </div>
+
+              <div className={styles.position}>{job.position}</div>
 
               {job.highlights && (
                 <ul className={styles.highlights}>
