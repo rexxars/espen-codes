@@ -17,7 +17,7 @@
     "website",
     "rexxars"
   ],
-  "author": "Espen Hovlandsdal",
+  "author": "Espen Hovlandsdal <espen@hovlandsdal.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/rexxars/espen-codes/issues"
@@ -25,9 +25,8 @@
   "homepage": "https://github.com/rexxars/espen-codes#readme",
   "dependencies": {
     "@sanity/types": "^2.0.1",
-    "next": "^9.5.5",
-    "next-sanity": "^0.1.5",
-    "picosanity": "^2.0.2",
+    "next": "^10.0.0",
+    "next-sanity": "^0.1.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
