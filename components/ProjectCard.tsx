@@ -21,7 +21,7 @@ export interface ProjectCardProps {
 }
 
 export function ProjectCard({project, as = 'div', className}: ProjectCardProps) {
-  const {legacyImage, title, websiteUrl, summary, slug, keywords = []} = project
+  const {legacyImage, title, websiteUrl, summary, slug, authoredFor, keywords = []} = project
   return React.createElement(
     as,
     {className: cls([styles.card, className])},
@@ -37,6 +37,11 @@ export function ProjectCard({project, as = 'div', className}: ProjectCardProps) 
       <div className={styles.meta}>
         <h2 className={styles.title}>{title}</h2>
         <p className={styles.summary}>{summary}</p>
+        {authoredFor && (
+          <p className={styles.authoredFor} title={`Authored for ${authoredFor}`}>
+            &copy; {authoredFor}
+          </p>
+        )}
       </div>
     </ExternalLink>,
   )

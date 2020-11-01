@@ -1,9 +1,9 @@
 import * as React from 'react'
-import {groq} from 'next-sanity'
-import Layout from '../../components/Layout'
-import {sanityClient} from '../../config/sanity'
 import Head from 'next/head'
+import {groq} from 'next-sanity'
+import {Layout} from '../../components/Layout'
 import {ProjectCardList} from '../../components/ProjectCardList'
+import {sanityClient} from '../../config/sanity'
 
 const query = groq`
   *[_type == $type]

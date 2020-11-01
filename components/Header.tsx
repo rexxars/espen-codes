@@ -1,9 +1,9 @@
 import * as React from 'react'
-import Link from 'next/link'
-import Menu from './Menu'
+import {Menu} from './Menu'
+import {Link} from './Link'
 import styles from './Header.module.css'
 
-export default function Header() {
+export function Header() {
   return (
     <header className={styles.root}>
       <div className={styles.content}>

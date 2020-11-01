@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {groq} from 'next-sanity'
-import Layout from '../components/Layout'
+import {Layout} from '../components/Layout'
 import {JsonResume, Resume} from '../components/resume'
 import {sanityClient} from '../config/sanity'
 

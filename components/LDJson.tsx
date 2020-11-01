@@ -7,7 +7,7 @@ interface LDJSONData {
   [key: string]: unknown
 }
 
-export default function LDJson(props: LDJSONData) {
+export function LDJson(props: LDJSONData) {
   return (
     <script
       type="application/ld+json"

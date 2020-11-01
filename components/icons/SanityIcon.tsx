@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-export default function SanityIcon() {
+export function SanityIcon() {
   return (
     <svg viewBox="0 0 247 247" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g fill="currentColor" transform="matrix(1, 0, 0, 1, 30.5, 0)">

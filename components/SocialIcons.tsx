@@ -1,23 +1,24 @@
 import * as React from 'react'
-import Link from 'next/link'
-import GitHubIcon from './icons/GitHubIcon'
-import TwitterIcon from './icons/TwitterIcon'
-import SchnauzerIcon from './icons/SchnauzerIcon'
+import {GitHubIcon} from './icons/GitHubIcon'
+import {TwitterIcon} from './icons/TwitterIcon'
+import {SchnauzerIcon} from './icons/SchnauzerIcon'
+import {ExternalLink} from './ExternalLink'
+import {Link} from './Link'
 import styles from './SocialIcons.module.css'
 
-export default function SocialIcons() {
+export function SocialIcons() {
   return (
     <ul className={styles.icons}>
       <li>
-        <a href="https://github.com/rexxars/">
+        <ExternalLink href="https://github.com/rexxars/">
           <GitHubIcon />
-        </a>
+        </ExternalLink>
       </li>
 
       <li>
-        <a href="https://twitter.com/rexxars">
+        <ExternalLink href="https://twitter.com/rexxars">
           <TwitterIcon />
-        </a>
+        </ExternalLink>
       </li>
 
       <li>

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Layout from '../../components/Layout'
+import {Layout} from '../../components/Layout'
 import {sanityClient} from '../../config/sanity'
 
 export default function ProjectPage(props) {

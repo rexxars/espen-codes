@@ -1,9 +1,9 @@
 import React from 'react'
-import Link from 'next/link'
 import {useRouter} from 'next/router'
+import {Link} from './Link'
 import styles from './Menu.module.css'
 
-export default function Menu() {
+export function Menu() {
   return (
     <nav className={styles.nav}>
       <ul>

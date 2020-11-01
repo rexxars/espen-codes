@@ -60,3 +60,8 @@
   composes: tags;
   color: #fff;
 }
+
+.authoredFor {
+  margin: 1rem 0 0 0;
+  font-size: 0.8rem;
+}

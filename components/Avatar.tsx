@@ -12,7 +12,7 @@ const AVATAR_SRCSET = `
   ${AVATAR_BASE_URL}&w=${AVATAR_SIZE}
 `.trim()
 
-export default function Avatar() {
+export function Avatar() {
   const [polys, setPolys] = useState(0)
 
   // When the actual avatar image has loaded, bump the number of polys _only_ to trigger
