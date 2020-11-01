@@ -8,6 +8,10 @@ export default function App({Component, pageProps}: AppProps) {
     <>
       <Head>
         <title key="title">Espen.Codes</title>
+        <meta
+          name="description"
+          content="Espen Hovlandsdal's home on the internet. Blog posts, projects, resume - all that kind of stuff."
+        />
       </Head>
 
       <Component {...pageProps} />

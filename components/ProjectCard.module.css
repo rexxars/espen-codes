@@ -1,0 +1,62 @@
+.card {
+  max-width: 320px;
+  color: #444;
+}
+
+.link {
+  transition: box-shadow 0.1s ease-out;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16);
+  height: 100%;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.link:hover {
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.25);
+}
+
+.legacyImage {
+  display: block;
+  width: 320px;
+  height: 180px;
+  margin: 0 auto;
+}
+
+.meta {
+  margin-top: 5px;
+  padding: 4px 8px 8px 8px;
+  flex: 1;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+
+.figure {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 180px;
+}
+
+.summary {
+  margin: 1rem 0 0 0;
+}
+
+.tags {
+  text-align: right;
+  font-size: 0.8rem;
+  color: #000;
+}
+
+.tags > li {
+  display: inline-block;
+  padding: 0.3rem 0.5rem;
+}
+
+.lightTags {
+  composes: tags;
+  color: #fff;
+}
