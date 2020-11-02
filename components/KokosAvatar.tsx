@@ -6,7 +6,6 @@ const VANITY = 'kokos-the-schnauzer.jpg'
 const AVATAR_SIZE = 600
 const AVATAR_BASE_URL = `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${KOKOS_ASSET_FILENAME}/${VANITY}?fm=jpg&bg=ceccca&q=90&rect=70,150,4362,4142`
 const AVATAR_SRCSET = `
-  ${AVATAR_BASE_URL}&w=${AVATAR_SIZE}&dpr=3 3x,
   ${AVATAR_BASE_URL}&w=${AVATAR_SIZE}&dpr=2 2x,
   ${AVATAR_BASE_URL}&w=${AVATAR_SIZE}
 `.trim()

@@ -7,7 +7,6 @@ const VANITY = 'espen-hovlandsdal.jpg'
 const AVATAR_SIZE = 400
 const AVATAR_BASE_URL = `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${AVATAR_ASSET_FILENAME}/${VANITY}?auto=format&q=90`
 const AVATAR_SRCSET = `
-  ${AVATAR_BASE_URL}&w=${AVATAR_SIZE}&dpr=3 3x,
   ${AVATAR_BASE_URL}&w=${AVATAR_SIZE}&dpr=2 2x,
   ${AVATAR_BASE_URL}&w=${AVATAR_SIZE}
 `.trim()
