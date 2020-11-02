@@ -32,7 +32,9 @@ export function ProjectCard({project, as = 'div', className}: ProjectCardProps) 
             <li key={keyword}>{keyword}</li>
           ))}
         </ul>
-        {legacyImage && <img src={urlForImage(legacyImage)} className={styles.legacyImage} />}
+        {legacyImage && (
+          <img src={`${urlForImage(legacyImage)}?auto=format`} className={styles.legacyImage} />
+        )}
       </figure>
       <div className={styles.meta}>
         <h2 className={styles.title}>{title}</h2>
