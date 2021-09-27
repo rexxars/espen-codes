@@ -1,15 +1,23 @@
 import React from 'react'
 import styles from './Resume.module.css'
+import {Education} from './Education'
 import {ResumeHeader} from './ResumeHeader'
 import {ResumeFooter} from './ResumeFooter'
 import {Volunteering} from './Volunteering'
 import {WorkExperience} from './WorkExperience'
 
-export function Resume({resume}: {resume: JsonResume}) {
+export function Resume({
+  resume,
+  showEducation = false,
+}: {
+  resume: JsonResume
+  showEducation?: boolean
+}) {
   return (
     <div className={styles.root}>
       <ResumeHeader resume={resume} />
       {resume.work && <WorkExperience work={resume.work} />}
+      {showEducation && resume.education && <Education education={resume.education} />}
       {resume.volunteer && <Volunteering volunteer={resume.volunteer} />}
       {(resume.skills || resume.languages || resume.basics.profiles) && (
         <ResumeFooter
@@ -59,5 +67,15 @@ export interface JsonResume {
     endDate?: string
     website?: string
     summary?: string
+  }[]
+  education?: {
+    _key: string
+    institution: string
+    area: string
+    studyType: string
+    startDate: string
+    endDate?: string
+    gpa?: number
+    courses?: string[]
   }[]
 }

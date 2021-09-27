@@ -1,0 +1,28 @@
+.root {
+  composes: section from './shared.module.css';
+}
+
+.study {
+  composes: job from './WorkExperience.module.css';
+}
+
+.position {
+  margin-bottom: 20px;
+}
+
+.institution {
+  composes: company from './WorkExperience.module.css';
+}
+
+.institutionName {
+  composes: companyName from './WorkExperience.module.css';
+}
+
+.date {
+  text-align: right;
+}
+
+.highlights {
+  list-style-type: disc;
+  margin-left: 35px;
+}
