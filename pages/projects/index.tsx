@@ -6,15 +6,13 @@ import {ProjectCardList} from '../../components/ProjectCardList'
 import {sanityClient} from '../../config/sanity'
 
 const query = groq`
-  *[_type == $type]
-    | order (priority asc)
-    | {
+  *[_type == $type] | order(priority asc) {
+    ...,
+    legacyImage {
       ...,
-      legacyImage {
-        ...,
-        asset->{_id, metadata { palette { dominant { background, title } } }}
-      }
+      asset->{_id, metadata { palette { dominant { background, title } } }}
     }
+  }
 `
 
 export async function getStaticProps() {

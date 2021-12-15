@@ -3,9 +3,10 @@ import {createClient, createPortableTextComponent} from 'next-sanity'
 import {isMaterializedImage, MaterializedImage} from '../types/types'
 import {SANITY_DATASET, SANITY_PROJECT_ID} from './constants'
 
+const apiVersion = '2021-12-15'
 const projectId = SANITY_PROJECT_ID
 const dataset = SANITY_DATASET
-const config = {projectId, dataset}
+const config = {projectId, dataset, apiVersion, useCdn: true}
 
 export const PortableText = createPortableTextComponent(config)
 export const sanityClient = createClient(config)
