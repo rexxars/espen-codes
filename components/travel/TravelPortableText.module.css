@@ -1,0 +1,12 @@
+.orderedList,
+.unorderedList {
+  margin-left: 2.5rem;
+}
+
+.orderedList {
+  list-style-type: decimal;
+}
+
+.unorderedList {
+  list-style-type: disc;
+}

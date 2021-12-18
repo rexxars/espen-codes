@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.headerIcon {
+  margin-right: 0.8rem;
+}
+
+.headerText {
+}
+
+@media only screen and (min-width: 600px) {
+  .header {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,15 @@
+.root {
+  max-width: 225px;
+  margin: 3rem auto 0 auto;
+}
+
+.toggle {
+  margin-top: 1rem;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.item {
+  margin: 1rem 0;
+}

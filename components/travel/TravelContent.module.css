@@ -1,0 +1,15 @@
+.root {
+  margin: 1rem auto 2rem auto;
+  max-width: 860px;
+  padding-bottom: 2rem;
+}
+
+@media only screen and (max-width: 860px) {
+  /**
+   * We need a little bit of padding on smaller screens,
+   * so if we're below the max width make sure to add it
+   */
+  .root {
+    margin: 2rem 0.8rem;
+  }
+}
