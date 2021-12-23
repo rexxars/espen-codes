@@ -34,7 +34,12 @@ export default function TravelGuideLocation({
       </Head>
 
       <article>
-        <LocationHeader location={location} guide={guide} assumePortraitMode={assumePortraitMode} />
+        <LocationHeader
+          key={location._id}
+          location={location}
+          guide={guide}
+          assumePortraitMode={assumePortraitMode}
+        />
 
         <TravelContent>
           <LocationBody location={location} guide={guide} />

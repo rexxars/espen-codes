@@ -26,11 +26,11 @@ export function LocationHeader({
   const handleChangeSlided = useCallback((evt) => setActivePhoto(evt.item), [setActivePhoto])
   const handlePrevPhoto = useCallback(
     () => setActivePhoto((prev) => (prev - 1 < 0 ? photos.length - 1 : prev - 1)),
-    [setActivePhoto],
+    [setActivePhoto, photos],
   )
   const handleNextPhoto = useCallback(
-    () => setActivePhoto((prev) => (prev + 1 === photos.length ? 0 : prev + 1)),
-    [setActivePhoto],
+    () => setActivePhoto((prev) => (prev + 1 >= photos.length ? 0 : prev + 1)),
+    [setActivePhoto, photos],
   )
   const isPortrait =
     typeof window === 'undefined' ? assumePortraitMode : window.innerHeight > window.innerWidth
