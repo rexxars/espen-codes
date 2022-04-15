@@ -20,3 +20,7 @@ export const MONTHS = [
   'Nov.',
   'Dec.',
 ]
+
+export const DIARY_PROJECT_ID = '867iww2s'
+export const DIARY_DATASET = 'diary'
+export const DIARY_API_TOKEN = process.env.DIARY_API_TOKEN
