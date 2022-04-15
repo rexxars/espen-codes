@@ -4,7 +4,7 @@ import {FaMapMarkedAlt} from 'react-icons/fa'
 import {MAPBOX_API_KEY} from '../../config/constants'
 import {Geopoint} from '../../types'
 import styles from './Map.module.css'
-import './MapEnvironmentInit'
+import '../MapEnvironmentInit'
 
 export default function Map({
   center,
