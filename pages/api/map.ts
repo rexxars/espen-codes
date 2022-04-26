@@ -10,21 +10,24 @@ export default async function handler(req, res) {
       error: 'Method Not Supported',
       message: 'Method Not Supported',
       statusCode: 405,
+      success: false,
+      updated: 0,
     })
     return
   }
 
   try {
-    await getDataFromStrava()
+    const result = await getDataFromStrava()
+    res.status(200).json({success: true, updated: result.updated})
   } catch (err) {
     res.status(500).json({
       error: 'Internal Server Error',
       message: err.message,
       statusCode: 500,
+      success: false,
+      updated: 0,
     })
   }
-
-  res.status(200).json({success: true})
 }
 
 async function getDataFromStrava(options = {refreshOnFail: true}): Promise<{updated: number}> {
