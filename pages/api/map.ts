@@ -27,77 +27,83 @@ export default async function handler(req, res) {
   res.status(200).json({success: true})
 }
 
-async function getDataFromStrava(options = {refreshOnFail: true}) {
-  const {accessToken} = await getStravaTokenState()
+async function getDataFromStrava(options = {refreshOnFail: true}): Promise<{updated: number}> {
+  return new Promise(async (resolve, reject) => {
+    const {accessToken} = await getStravaTokenState()
 
-  const stream = new ActivitiesStream({
-    token: accessToken,
-    after: new Date(Date.now() - 1000 * 60 * 60 * 24 * 15),
-  })
-
-  stream.on('error', async (err) => {
-    if (err.message.indexOf('Received 40') === -1) {
-      throw err
-    }
-
-    if (options.refreshOnFail) {
-      console.log('[strava] Refreshing Strava token')
-      await refreshStravaToken()
-      return getDataFromStrava({refreshOnFail: false})
-    }
-
-    throw err
-  })
-
-  const docs = []
-  stream.on('data', (act) => {
-    const {name, distance, id, start_date: time, map} = act
-    const {coordinates} = geoPolyline.decode({
-      type: 'LineString',
-      coordinates: map.summary_polyline,
+    const stream = new ActivitiesStream({
+      token: accessToken,
+      after: new Date(Date.now() - 1000 * 60 * 60 * 24 * 15),
     })
 
-    const _id = `activity-${id}`
-    const doc = {
-      _id,
-      _type: 'activity',
-      distance,
-      name,
-      time,
-      path: convertCoordinates(coordinates, {simplify: true}),
-    }
+    stream.on('error', async (err) => {
+      if (err.message.indexOf('Received 40') === -1) {
+        reject(err)
+        return
+      }
 
-    docs.push(doc)
-  })
+      if (options.refreshOnFail) {
+        console.log('[strava] Refreshing Strava token')
+        await refreshStravaToken()
+        resolve(getDataFromStrava({refreshOnFail: false}))
+        return
+      }
 
-  stream.on('end', async () => {
-    if (!docs.length) {
-      console.log('[strava] No activities found')
-      return
-    }
+      reject(err)
+    })
 
-    console.log(`Diffing ${docs.length} docs against Sanity`)
-    const compareKeys = Object.keys(docs[0])
-    const remoteDocs = keyBy(
-      (await diaryClient.fetch(`*[_id in $ids]`, {ids: docs.map((doc) => doc._id)})).map((doc) =>
-        pick(doc, compareKeys),
-      ),
-      '_id',
-    )
+    const docs = []
+    stream.on('data', (act) => {
+      const {name, distance, id, start_date: time, map} = act
+      const {coordinates} = geoPolyline.decode({
+        type: 'LineString',
+        coordinates: map.summary_polyline,
+      })
 
-    const updated = docs.filter((local) => !isEqual(local, remoteDocs[local._id]))
-    if (updated.length === 0) {
-      console.log('[strava] No activities has changed, falling back')
-      return
-    }
+      const _id = `activity-${id}`
+      const doc = {
+        _id,
+        _type: 'activity',
+        distance,
+        name,
+        time,
+        path: convertCoordinates(coordinates, {simplify: true}),
+      }
 
-    console.log(`[strava] Creating/updating ${updated.length} activities`)
-    await updated
-      .reduce((trx, doc) => trx.createOrReplace(doc), diaryClient.transaction())
-      .commit({visibility: 'async'})
+      docs.push(doc)
+    })
 
-    console.log('[strava] Done.')
-    return {updated: updated.length}
+    stream.on('end', async () => {
+      if (!docs.length) {
+        console.log('[strava] No activities found')
+        resolve({updated: 0})
+        return
+      }
+
+      console.log(`Diffing ${docs.length} docs against Sanity`)
+      const compareKeys = Object.keys(docs[0])
+      const remoteDocs = keyBy(
+        (await diaryClient.fetch(`*[_id in $ids]`, {ids: docs.map((doc) => doc._id)})).map((doc) =>
+          pick(doc, compareKeys),
+        ),
+        '_id',
+      )
+
+      const updated = docs.filter((local) => !isEqual(local, remoteDocs[local._id]))
+      if (updated.length === 0) {
+        console.log('[strava] No activities has changed, falling back')
+        resolve({updated: 0})
+        return
+      }
+
+      console.log(`[strava] Creating/updating ${updated.length} activities`)
+      await updated
+        .reduce((trx, doc) => trx.createOrReplace(doc), diaryClient.transaction())
+        .commit({visibility: 'async'})
+
+      console.log('[strava] Done.')
+      resolve({updated: updated.length})
+    })
   })
 }
 
