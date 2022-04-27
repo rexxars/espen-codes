@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import memoize from 'lodash/memoize'
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useCallback, useEffect, useRef, useState} from 'react'
 import {LatLng, Map, Polyline as LeafletPolyline} from 'leaflet'
-import {Circle, MapContainer, Polyline, TileLayer} from 'react-leaflet'
+import {Circle, MapContainer, Polyline, TileLayer, useMapEvent} from 'react-leaflet'
 import {MAPBOX_API_KEY} from '../../config/constants'
 import '../MapEnvironmentInit'
 import styles from './SfMap.module.css'
@@ -17,6 +17,7 @@ const getPolyBounds = memoize((line) => line.getBounds())
 
 export default function SanFranMap(props) {
   const [userLocation, setUserLocation] = useState(null)
+  const hasMoved = useRef(false)
   const [mapRef, setMapRef] = useState<Map | undefined>()
 
   const handleUserLocation = useCallback((evt) => {
@@ -38,12 +39,22 @@ export default function SanFranMap(props) {
     setUserLocation({latLng: new LatLng(lat, lng), accuracy})
   }, [])
 
+  const onLocationFound = useCallback(
+    (loc) => {
+      if (!hasMoved.current) {
+        mapRef.setView(loc.latlng)
+      }
+    },
+    [mapRef],
+  )
+
   useEffect(() => {
     if (!CAN_USE_LOCATION || !mapRef) {
       return
     }
 
-    mapRef.locate({setView: true, maxZoom: Math.round(DEFAULT_ZOOM * 1.15)})
+    mapRef.locate({setView: false, maxZoom: Math.round(DEFAULT_ZOOM * 1.15)})
+    mapRef.on('locationfound', onLocationFound)
 
     const locationRequest = navigator.geolocation.watchPosition(
       handleUserLocation,
@@ -56,9 +67,14 @@ export default function SanFranMap(props) {
     )
 
     return () => {
+      mapRef.removeEventListener('locationfound', onLocationFound)
       navigator.geolocation.clearWatch(locationRequest)
     }
   }, [mapRef])
+
+  const handleMove = useCallback((evt) => {
+    hasMoved.current = true
+  }, [])
 
   const poly = getPolyLine(props.paths)
   const bounds = getPolyBounds(poly)
@@ -89,6 +105,8 @@ export default function SanFranMap(props) {
 
           <Polyline positions={poly.getLatLngs()} />
 
+          <MapEventListener onMove={handleMove} />
+
           {userLocation && (
             <Circle
               key="user-location"
@@ -101,4 +119,9 @@ export default function SanFranMap(props) {
       </div>
     </>
   )
+}
+
+function MapEventListener(props: {onMove: (any: any) => void}) {
+  useMapEvent('move', props.onMove)
+  return null
 }
