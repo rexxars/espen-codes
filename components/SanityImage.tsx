@@ -3,12 +3,7 @@ import Measure, {ContentRect} from 'react-measure'
 import {Blurhash} from 'react-blurhash'
 import urlFor from '@sanity/image-url'
 import {ProjectedGuideImage} from '../types/types'
-import {
-  SANITY_DATASET,
-  SANITY_PROJECT_ID,
-  TRAVEL_GUIDES_DATASET,
-  TRAVEL_GUIDES_PROJECT_ID,
-} from '../config/constants'
+import {SANITY_DATASET, SANITY_PROJECT_ID} from '../config/constants'
 import {useImageLoaded} from '../hooks/useImageLoaded'
 
 type AssetSource =
@@ -19,7 +14,7 @@ type AssetSource =
   | ProjectedGuideImage
 
 type UrlBuilder = (asset: AssetSource) => ReturnType<typeof urlFor>
-type ProjectName = 'travelGuides' | 'espenCodes'
+type ProjectName = 'espenCodes'
 
 interface ImageProps {
   asset: AssetSource
@@ -32,9 +27,6 @@ interface ImageProps {
 }
 
 const builders: Record<ProjectName, UrlBuilder> = {
-  travelGuides: (asset: AssetSource) =>
-    urlFor({projectId: TRAVEL_GUIDES_PROJECT_ID, dataset: TRAVEL_GUIDES_DATASET}).image(asset),
-
   espenCodes: (asset: AssetSource) =>
     urlFor({projectId: SANITY_PROJECT_ID, dataset: SANITY_DATASET}).image(asset),
 }
@@ -51,7 +43,7 @@ export function SanityImage({
   className,
   asBackground,
   style,
-  project = 'travelGuides',
+  project = 'espenCodes',
 }: ImageProps) {
   const [rect, setRect] = useState<ContentRect>()
   const onResize = useCallback((newRect: ContentRect) => setRect(newRect), [setRect])

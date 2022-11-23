@@ -29,34 +29,6 @@ export interface PortableTextSpan {
   text: string
 }
 
-export interface ProjectedTravelGuideSplash {
-  _id: string
-  title: string
-  slug: string
-  disableIndexing?: boolean
-  coverImage: ProjectedGuideImage
-  intro: PortableTextBlock<ProjectedAnnotation | LocationReference>[]
-  locationTitles: string[]
-  locationIds: string[]
-}
-
-export interface ProjectedTravelGuideLocation {
-  guide: {
-    _id: string
-    title: string
-    slug: string
-    disableIndexing?: boolean
-    showHeaderOnLocations?: boolean
-    locationIds: string[]
-  }
-  prevLocationTitle?: string
-  nextLocationTitle?: string
-  locationTitles: string[]
-  locationIndex: number
-  locationCount: number
-  location: ProjectedLocation
-}
-
 export interface ProjectedGuideImage extends Image {
   _type: 'image'
   blurHash: string
