@@ -28,6 +28,7 @@
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/image-url": "^1.0.1",
     "@sanity/types": "^2.23.1",
+    "blurhash": "^1.1.1",
     "date-fns": "^2.29.3",
     "geojson-polyline": "^1.0.3",
     "leaflet": "^1.7.1",
