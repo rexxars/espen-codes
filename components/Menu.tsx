@@ -1,5 +1,4 @@
 import React from 'react'
-import {useRouter} from 'next/router'
 import {Link} from './Link'
 import styles from './Menu.module.css'
 
@@ -24,8 +23,8 @@ export function Menu() {
 }
 
 const NavLink = ({children, href}) => {
-  const {asPath} = useRouter()
-  const anchorClass = asPath === href ? styles.activeLink : styles.link
+  const pathName = 'nope' // @todo figure out how to get at it in server components
+  const anchorClass = pathName === href ? styles.activeLink : styles.link
 
   return (
     <Link href={href} className={anchorClass}>

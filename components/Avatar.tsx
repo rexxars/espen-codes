@@ -1,3 +1,5 @@
+'use client'
+
 import React, {useCallback, useRef, useState} from 'react'
 import {AVATAR_ASSET_FILENAME, SANITY_DATASET, SANITY_PROJECT_ID} from '../config/constants'
 import {SvgAvatar} from './SvgAvatar'

@@ -35,7 +35,10 @@ ol {
 }
 
 body,
-html,
-#__next {
+html {
   height: 100%;
+}
+
+[data-nextjs-scroll-focus-boundary] {
+  display: flex;
 }
