@@ -23,11 +23,8 @@ export function Intro() {
         For the past few years I've been pushing code at{' '}
         <ExternalLink href="https://www.sanity.io/">Sanity.io</ExternalLink>. Occasionally I do
         talks at conferences and meetups. I also write open-source software that is downloaded
-        around 115 million times a month. My{' '}
-        <Link href="/kokos">
-          <a>miniature schnauzer</a>
-        </Link>{' '}
-        takes me on walks and keeps me healthy. Sometimes I make (and write about) silly{' '}
+        around 115 million times a month. My <Link href="/kokos">miniature schnauzer</Link> takes me
+        on walks and keeps me healthy. Sometimes I make (and write about) silly{' '}
         <span className={styles.nobreak}>(and not so silly)</span>{' '}
         <Link href="/projects">projects</Link>.
       </p>

@@ -1,6 +1,5 @@
-import {Image} from '@sanity/types'
-import {createClient, createPortableTextComponent} from 'next-sanity'
-import defaultPT from '@sanity/block-content-to-react'
+import type {Image} from '@sanity/types'
+import {createClient} from 'next-sanity'
 import {isMaterializedImage, MaterializedImage} from '../types/types'
 import {SANITY_DATASET, SANITY_PROJECT_ID} from './constants'
 
@@ -8,9 +7,6 @@ const apiVersion = '2021-12-15'
 const projectId = SANITY_PROJECT_ID
 const dataset = SANITY_DATASET
 const config = {projectId, dataset, apiVersion, useCdn: true}
-
-export const PortableText = createPortableTextComponent(config)
-export const defaultSerializers = (defaultPT as any).defaultSerializers
 
 export const sanityClient = createClient(config)
 

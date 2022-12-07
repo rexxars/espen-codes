@@ -28,8 +28,8 @@ const NavLink = ({children, href}) => {
   const anchorClass = asPath === href ? styles.activeLink : styles.link
 
   return (
-    <Link href={href}>
-      <a className={anchorClass}>{children}</a>
+    <Link href={href} className={anchorClass}>
+      {children}
     </Link>
   )
 }

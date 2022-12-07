@@ -23,9 +23,7 @@ export function SocialIcons() {
 
       <li>
         <Link href="/kokos">
-          <a>
-            <SchnauzerIcon />
-          </a>
+          <SchnauzerIcon />
         </Link>
       </li>
     </ul>
