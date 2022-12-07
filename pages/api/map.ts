@@ -3,6 +3,7 @@ import {pick, keyBy, isEqual} from 'lodash'
 import geoPolyline from 'geojson-polyline'
 import ActivitiesStream from 'strava-activities-stream'
 import {diaryClient} from '../../config/sanity.server'
+import type {Geopoint} from '../../types'
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -118,7 +119,7 @@ function convertCoordinates(coordinates, options = {simplify: false}) {
   }
 }
 
-function convertPoint(point) {
+function convertPoint(point): Geopoint {
   return {_type: 'geopoint', lat: point[1], lng: point[0]}
 }
 

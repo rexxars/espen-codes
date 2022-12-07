@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Head from 'next/head'
-import {Block} from '@sanity/types'
+import {PortableTextBlock} from '@portabletext/types'
 import {groq} from 'next-sanity'
 import {Kokos} from '../components/Kokos'
 import {Layout} from '../components/Layout'
@@ -17,7 +17,7 @@ export async function getStaticProps() {
   }
 }
 
-export default function KokosPage({kokos}: {kokos: {bio: Block[]}}) {
+export default function KokosPage({kokos}: {kokos: {bio: PortableTextBlock[]}}) {
   return (
     <Layout>
       <Head>
