@@ -43,7 +43,7 @@
     "react-is": "^18.2.0",
     "react-leaflet": "^4.2.0",
     "react-measure": "^2.5.2",
-    "sanity": "^3.0.1",
+    "sanity": "^3.0.2",
     "strava-activities-stream": "^1.0.0",
     "styled-components": "^5.2"
   },
