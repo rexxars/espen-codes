@@ -11,4 +11,5 @@ export const sanityConfig = defineConfig({
   dataset: SANITY_DATASET,
   plugins: [deskTool({structure}), jsonResume()],
   schema: {types: schemaTypes},
+  basePath: '/studio',
 })
