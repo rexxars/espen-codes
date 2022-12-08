@@ -1,7 +1,8 @@
 import {defineType} from 'sanity'
 
 export default defineType({
-  name: 'jsonResume',
+  name: 'jsonResumeResume',
+  title: 'Résumé',
   type: 'document',
   fields: [
     {

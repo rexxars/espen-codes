@@ -1,6 +1,6 @@
 import {StructureBuilder} from 'sanity/desk'
 
-const excludedTypes = ['jsonResume']
+const excludedTypes = ['jsonResumeResume']
 
 export const structure = (S: StructureBuilder) =>
   S.list()
@@ -11,6 +11,6 @@ export const structure = (S: StructureBuilder) =>
 
       // Dat resume
       S.listItem()
-        .title('Resumé')
-        .child(S.document().schemaType('jsonResume').documentId('resume')),
+        .title('Résumé')
+        .child(S.document().schemaType('jsonResumeResume').documentId('resume')),
     ])
