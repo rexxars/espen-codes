@@ -1,10 +1,9 @@
-import {getImageDimensions} from '@sanity/asset-utils'
-import {ProjectedGuideImage} from '../types'
+import {getImageDimensions, SanityImageSource} from '@sanity/asset-utils'
 
-export function isPortraitImage(img: ProjectedGuideImage): boolean {
-  return getImageDimensions(img.asset._ref).aspectRatio < 1
+export function isPortraitImage(img: SanityImageSource): boolean {
+  return getImageDimensions(img).aspectRatio < 1
 }
 
-export function isLandscapeImage(img: ProjectedGuideImage): boolean {
+export function isLandscapeImage(img: SanityImageSource): boolean {
   return !isPortraitImage(img)
 }
