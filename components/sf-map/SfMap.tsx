@@ -87,7 +87,7 @@ export default function SanFranMap(props) {
 
       <div style={{position: 'relative'}}>
         <MapContainer
-          whenCreated={setMapRef}
+          ref={setMapRef}
           center={bounds.getCenter()}
           zoom={13}
           scrollWheelZoom={false}
