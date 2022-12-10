@@ -1,17 +1,9 @@
 import {CSSProperties, ReactNode, useCallback, useState} from 'react'
 import Measure, {ContentRect} from 'react-measure'
-import {Blurhash} from 'react-blurhash'
 import urlFor from '@sanity/image-url'
-import {ProjectedGuideImage} from '../types/types'
 import {SANITY_DATASET, SANITY_PROJECT_ID} from '../config/constants'
-import {useImageLoaded} from '../hooks/useImageLoaded'
 
-type AssetSource =
-  | {asset: {_ref: string}}
-  | {asset: {_id: string}}
-  | {_ref: string}
-  | {_id: string}
-  | ProjectedGuideImage
+type AssetSource = {asset: {_ref: string}} | {asset: {_id: string}} | {_ref: string} | {_id: string}
 
 type UrlBuilder = (asset: AssetSource) => ReturnType<typeof urlFor>
 type ProjectName = 'espenCodes'
@@ -31,10 +23,6 @@ const builders: Record<ProjectName, UrlBuilder> = {
     urlFor({projectId: SANITY_PROJECT_ID, dataset: SANITY_DATASET}).image(asset),
 }
 
-const getBlurHash = (asset: AssetSource): string | undefined => {
-  return 'blurHash' in asset ? asset.blurHash : undefined
-}
-
 const handleDragStart = (e) => e.preventDefault()
 
 export function SanityImage({
@@ -48,7 +36,6 @@ export function SanityImage({
   const [rect, setRect] = useState<ContentRect>()
   const onResize = useCallback((newRect: ContentRect) => setRect(newRect), [setRect])
   const builder = builders[project]
-  const blurHash = getBlurHash(asset)
 
   return (
     <Measure bounds onResize={onResize}>
@@ -68,24 +55,12 @@ export function SanityImage({
             .quality(90)
             .toString()
 
-        const isLoaded = useImageLoaded(src)
         const containerStyles = asBackground
           ? {...style, backgroundImage: `url(${src})`, backgroundSize: 'cover'}
           : style
 
         return (
           <div ref={measureRef} style={containerStyles} className={className}>
-            {src && !isLoaded && (
-              <Blurhash
-                hash={blurHash}
-                width={width}
-                height={height}
-                resolutionX={32}
-                resolutionY={32}
-                punch={1}
-              />
-            )}
-
             {asBackground ? (
               children
             ) : (
