@@ -71,12 +71,23 @@ export function Countdown({
 
       <div className={styles.root}>
         <Head>
-          <title key="title">Days left!</title>
+          <title key="title">Time left!</title>
         </Head>
 
         <main className={styles.numbers}>
-          {days && <h1 className={styles.days}>{days}</h1>}
-          <h2 className={styles.hours}>(+{hours} hours)</h2>
+          {days >= 1 && (
+            <>
+              {days && <h1 className={styles.days}>{days}</h1>}
+              <h2 className={styles.hours}>(+{hours} hours)</h2>
+            </>
+          )}
+
+          {hours > 0 && (
+            <>
+              <h1 className={styles.days}>{hours}</h1>
+              <h2>hours</h2>
+            </>
+          )}
         </main>
       </div>
     </>
