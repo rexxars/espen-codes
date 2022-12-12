@@ -1,0 +1,59 @@
+.article {
+  max-width: 640px;
+}
+
+.article h1 {
+  font-size: 3rem;
+  margin: 2rem 0;
+}
+
+.figure {
+  margin: 2rem 0;
+  background: #eee;
+}
+
+.figure > figcaption {
+  padding: 0.5rem;
+  font-style: italic;
+}
+
+.image {
+  height: 450px;
+  max-width: 100%;
+}
+
+.bullets {
+  list-style-type: disc;
+  margin-left: 2rem;
+}
+
+.ingredients {
+  margin-top: 2rem;
+}
+
+.ingredients > h2 {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+
+.ingredients > ul {
+  list-style-type: disc;
+  margin-left: 2rem;
+}
+
+.instructions,
+.stats {
+  composes: ingredients;
+}
+
+.instructions > ol {
+  list-style-type: decimal;
+  margin-left: 2rem;
+}
+
+/* "Mobile" */
+@media only screen and (max-width: 500px) {
+  .article {
+    min-width: auto;
+  }
+}
