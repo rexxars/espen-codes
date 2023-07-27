@@ -4,8 +4,8 @@ import styles from './Countdown.module.css'
 import Head from 'next/head'
 
 export function Countdown({
-  date = '2022-12-10T22:50:00Z',
-  startDate = '2022-11-05T16:00:00Z',
+  date = '2023-08-14T19:00:00.000Z',
+  startDate = '2023-06-20T19:00:00Z',
 }: {
   date?: string
   startDate?: string
