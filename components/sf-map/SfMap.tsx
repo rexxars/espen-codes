@@ -96,7 +96,7 @@ export default function SanFranMap(props) {
           <TileLayer
             url="https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}"
             id="mapbox/outdoors-v11"
-            attribution={'Something credits something'}
+            attribution={'Data from <a href="https://www.strava.com/">Strava</a>'}
             tileSize={512}
             maxZoom={18}
             zoomOffset={-1}
