@@ -1,10 +1,8 @@
 import * as React from 'react'
 import Head from 'next/head'
 import type {Image} from '@sanity/types'
-import type {PortableTextBlock} from '@portabletext/types'
 import {Layout} from '../components/Layout'
 import styles from '../components/Article.module.css'
-import {SanityImage} from '../components/SanityImage'
 import {urlForImage} from '../config/sanity'
 
 const image: Image = {
