@@ -15,4 +15,4 @@ jobs:
 
     steps:
       - name: Ping
-        run: curl --max-time 1 -s -o /dev/null -w "%{http_code}" $PING_ENDPOINT
+        run: curl --max-time 1 -s -o /dev/null -w "%{http_code}" $PING_ENDPOINT|| { exit_code=$?; [ $exit_code -ne 28 ] && exit $exit_code; }
