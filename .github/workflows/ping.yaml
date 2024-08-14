@@ -15,4 +15,4 @@ jobs:
 
     steps:
       - name: Ping
-        run: curl --max-time=0.5 $PING_ENDPOINT
+        run: curl --max-time 1 $PING_ENDPOINT
