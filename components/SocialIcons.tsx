@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {GitHubIcon} from './icons/GitHubIcon'
-import {TwitterIcon} from './icons/TwitterIcon'
+import {BlueskyIcon} from './icons/BlueskyIcon'
 import {SchnauzerIcon} from './icons/SchnauzerIcon'
 import {ExternalLink} from './ExternalLink'
 import {Link} from './Link'
@@ -16,8 +16,8 @@ export function SocialIcons() {
       </li>
 
       <li>
-        <ExternalLink href="https://twitter.com/rexxars">
-          <TwitterIcon />
+        <ExternalLink href="https://bsky.app/profile/espen.codes">
+          <BlueskyIcon />
         </ExternalLink>
       </li>
 

@@ -9,7 +9,7 @@ export default defineType({
       name: 'network',
       title: 'Network',
       type: 'string',
-      description: 'eg "Twitter", "GitHub", "Skype" etc',
+      description: 'eg "Twitter", "BlueSky", "GitHub", "Skype" etc',
     },
     {
       name: 'username',
