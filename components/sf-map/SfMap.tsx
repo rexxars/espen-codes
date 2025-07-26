@@ -78,6 +78,7 @@ export default function SanFranMap(props) {
 
   const poly = getPolyLine(props.paths)
   const bounds = getPolyBounds(poly)
+  const accessToken = encodeURIComponent(MAPBOX_API_KEY)
 
   return (
     <>
@@ -94,13 +95,12 @@ export default function SanFranMap(props) {
           className={styles.map}
         >
           <TileLayer
-            url="https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}"
+            url={`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${accessToken}`}
             id="mapbox/outdoors-v11"
             attribution={'Data from <a href="https://www.strava.com/">Strava</a>'}
             tileSize={512}
             maxZoom={18}
             zoomOffset={-1}
-            accessToken={MAPBOX_API_KEY}
           />
 
           <Polyline positions={poly.getLatLngs()} />
