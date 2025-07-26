@@ -1,8 +1,8 @@
-import SanityClient from '@sanity/client'
+import {createClient} from '@sanity/client'
 
 import {DIARY_API_TOKEN, DIARY_DATASET, DIARY_PROJECT_ID} from './constants'
 
-export const diaryClient = new SanityClient({
+export const diaryClient = createClient({
   apiVersion: '2022-04-12',
   projectId: DIARY_PROJECT_ID,
   dataset: DIARY_DATASET,
