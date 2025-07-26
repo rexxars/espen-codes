@@ -13,6 +13,10 @@ export function Header() {
           <span>Codes</span>
         </Link>
 
+        <div className={styles.spacer} style={{backgroundImage: 'url(/api/spacer)'}}>
+          &nbsp;
+        </div>
+
         <Menu />
       </div>
     </header>
