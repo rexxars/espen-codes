@@ -72,8 +72,9 @@ const sfBoundaryLine: Array<LatLng> = [
   [-122.38368458809852, 37.8343753515872],
 ].map(([lng, lat]) => new LatLng(lat, lng))
 
+const sfCenter = new LatLng(37.76578720301821, -122.44688605344325)
+
 const getPolyLine = memoize((paths) => new LeafletPolyline(paths))
-const getPolyBounds = memoize((line) => line.getBounds())
 
 export default function SanFranMap(props) {
   const [userLocation, setUserLocation] = useState(null)
@@ -137,7 +138,6 @@ export default function SanFranMap(props) {
   }, [])
 
   const poly = getPolyLine(props.paths)
-  const bounds = getPolyBounds(poly)
   const accessToken = encodeURIComponent(MAPBOX_API_KEY)
 
   return (
@@ -149,7 +149,7 @@ export default function SanFranMap(props) {
       <div style={{position: 'relative'}}>
         <MapContainer
           ref={setMapRef}
-          center={bounds.getCenter()}
+          center={sfCenter}
           zoom={13}
           scrollWheelZoom={false}
           className={styles.map}
