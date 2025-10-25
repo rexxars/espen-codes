@@ -86,7 +86,7 @@ export default function BreadPage() {
           <h2>Stats</h2>
           <ul className={styles.bullets}>
             <li>Active time spent: ~15 minutes</li>
-            <li>Time from start to finish: ~2.5 hours</li>
+            <li>Time from start to finish: ~3 hours</li>
           </ul>
         </section>
 
@@ -96,14 +96,14 @@ export default function BreadPage() {
           <ul>
             <li>175g whole wheat flour</li>
             <li>125g all purpose flour</li>
-            <li>20g sunflower kernels</li>
             <li>20g oats</li>
+            <li>20g sunflower kernels</li>
             <li>35g flax seed</li>
             <li>25g pumpkin seeds</li>
             <li>20g chia seeds</li>
             <li>0.5 tbsp salt</li>
             <li>1 tbsp honey (can be dropped)</li>
-            <li>2 packets of dry yeast</li>
+            <li>1 packet of dry yeast (~7g)</li>
             <li>333 ml water (approx body temperature)</li>
             <li>Optional: some dry berries or whatever you might want for extra flavor</li>
           </ul>
@@ -117,7 +117,7 @@ export default function BreadPage() {
               Mix everything together. I like to use a silicone spatula for this. The dough
               shouldn't be dry, but it shouldn't be wet either.
             </li>
-            <li>Cover the bowl lightly and leave it for 30 minutes.</li>
+            <li>Cover the bowl lightly and leave it for at least 1 hour.</li>
             <li>
               Oil the sides and bottom of a loaf pan (I use{' '}
               <a href="https://www.amazon.com/gp/product/B07PJG9WZY/" rel="noopener noreferer">
@@ -129,7 +129,7 @@ export default function BreadPage() {
               Pour/scoop the dough into the oiled pan. It'll look like it's far from enough - but
               the yeast will do its thing, don't worry.
             </li>
-            <li>Leave for 45 minutes, lightly wrapped.</li>
+            <li>Leave for 1 hour, lightly wrapped.</li>
             <li>Preheat the oven to 225°C / 437°F.</li>
             <li>Put the pan into the oven and bake for 40 minutes.</li>
             <li>Remove the bread, drop it out of the pan.</li>
