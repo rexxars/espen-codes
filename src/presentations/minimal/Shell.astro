@@ -1,0 +1,71 @@
+---
+import '../default/styles.css'
+
+interface Props {
+  description?: string | undefined
+  title?: string | undefined
+}
+
+const {description = "Espen Hovlandsdal's digital garden.", title = 'espen.codes'} = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicons/favicon.svg" type="image/svg+xml" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="minimal-header">
+      <a href="/">espen.codes</a>
+      <nav aria-label="Main navigation">
+        <a href="/blog">words</a>
+        <a href="/projects">things</a>
+        <a href="/resume">work</a>
+      </nav>
+    </header>
+    <main><slot /></main>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --brand: #2a2722;
+    --canvas: #fafafa;
+    --ink: #2a2722;
+    --line: #aaa79c;
+    --muted: #5a584f;
+    --page-width: 58rem;
+    font-family:
+      -apple-system,
+      BlinkMacSystemFont,
+      Segoe UI,
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      Fira Sans,
+      Droid Sans,
+      Helvetica Neue,
+      sans-serif;
+  }
+</style>
+
+<style>
+  .minimal-header {
+    display: flex;
+    font-size: 0.85rem;
+    justify-content: space-between;
+    margin-inline: auto;
+    max-width: var(--page-width);
+    padding: 1rem;
+  }
+
+  nav {
+    display: flex;
+    gap: 1rem;
+  }
+</style>

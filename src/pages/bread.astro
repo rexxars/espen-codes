@@ -1,0 +1,158 @@
+---
+import {BREAD_TRANSLATIONS} from '../content/bread'
+import {getPresentation} from '../presentations'
+
+export const prerender = true
+
+const {Shell} = getPresentation()
+const loafImage =
+  'https://cdn.sanity.io/images/espenhov/production/1bde423cd5b1c303d28c84673aad9b6b82d0be93-769x1024.jpg?fit=crop&h=700&w=1024&dpr=2'
+const sliceImage =
+  'https://cdn.sanity.io/images/espenhov/production/c6dacdbbf74b793a0f8c2335958db9215d0027f0-3024x4032.jpg?fit=crop&h=700&w=1024&dpr=2&crop=focalpoint&fp-y=0.53'
+---
+
+<Shell title="Bread - Espen.Codes">
+  <div class="page-width bread-page">
+    <nav class="languages" aria-label="Language">
+      {
+        BREAD_TRANSLATIONS.map((translation) => (
+          <button type="button" data-language-button={translation.id}>
+            {translation.label}
+          </button>
+        ))
+      }
+    </nav>
+
+    {
+      BREAD_TRANSLATIONS.map((translation) => (
+        <article
+          class="prose"
+          data-language-content={translation.id}
+          lang={translation.id}
+          hidden={translation.id !== 'en'}
+        >
+          <h1>{translation.heading}</h1>
+          <p class="intro">{translation.intro}</p>
+          <figure>
+            <img src={loafImage} alt="A home baked loaf of seeded bread" />
+            <figcaption>{translation.figcaption1}</figcaption>
+          </figure>
+          <p>{translation.paragraph1}</p>
+          <p>{translation.paragraph2}</p>
+          <section>
+            <h2>{translation.statsHeading}</h2>
+            <ul>
+              <li>{translation.activeTime}</li>
+              <li>{translation.totalTime}</li>
+            </ul>
+          </section>
+          <section>
+            <h2>{translation.ingredientsHeading}</h2>
+            <p>{translation.servings}</p>
+            <ul>
+              {translation.ingredients.map((ingredient) => (
+                <li>{ingredient}</li>
+              ))}
+            </ul>
+          </section>
+          <section>
+            <h2>{translation.instructionsHeading}</h2>
+            <ol>
+              {translation.instructions.map((instruction) => (
+                <li>{instruction}</li>
+              ))}
+            </ol>
+          </section>
+          <figure>
+            <img src={sliceImage} alt="Two slices of seeded bread with toppings" />
+            <figcaption>{translation.figcaption2}</figcaption>
+          </figure>
+        </article>
+      ))
+    }
+  </div>
+</Shell>
+
+<script>
+  function showLanguage(language: string): void {
+    for (const content of document.querySelectorAll('[data-language-content]')) {
+      if (content instanceof HTMLElement) {
+        content.hidden = content.dataset.languageContent !== language
+      }
+    }
+
+    for (const button of document.querySelectorAll('[data-language-button]')) {
+      if (button instanceof HTMLButtonElement) {
+        button.dataset.active = `${button.dataset.languageButton === language}`
+      }
+    }
+
+    document.documentElement.lang = language
+  }
+
+  const initialLanguage = new URL(window.location.href).searchParams.get('lang')
+  showLanguage(initialLanguage === 'no' ? 'no' : 'en')
+
+  for (const button of document.querySelectorAll('[data-language-button]')) {
+    button.addEventListener('click', () => {
+      if (!(button instanceof HTMLButtonElement)) return
+      const language = button.dataset.languageButton
+      if (language !== 'en' && language !== 'no') return
+
+      const url = new URL(window.location.href)
+      url.searchParams.set('lang', language)
+      window.history.replaceState({}, '', url)
+      showLanguage(language)
+    })
+  }
+</script>
+
+<style>
+  .bread-page {
+    max-width: 44rem;
+    padding-block: 2rem 5rem;
+  }
+
+  .languages {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  button {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    cursor: pointer;
+    font: inherit;
+    padding: 0.45rem 0.75rem;
+  }
+
+  button[data-active='true'] {
+    background: var(--brand);
+    color: white;
+  }
+
+  .intro {
+    font-size: 1.25rem;
+  }
+
+  figure {
+    background: #eee;
+    margin: 2rem 0;
+  }
+
+  figure img {
+    display: block;
+    max-height: 34rem;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  figcaption {
+    font-size: 0.9rem;
+    font-style: italic;
+    padding: 0.6rem;
+  }
+</style>

@@ -3,6 +3,7 @@ import {categoryType} from './category'
 import {petType} from './pet'
 import {portableTextType} from './portableText'
 import {projectType} from './project'
+import {projectReflectionType} from './projectReflection'
 import {postType} from './post'
 
 export const schemaTypes = [
@@ -10,6 +11,7 @@ export const schemaTypes = [
   authorType,
   petType,
   projectType,
+  projectReflectionType,
   categoryType,
   portableTextType,
 ]

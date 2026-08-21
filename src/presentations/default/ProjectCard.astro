@@ -1,0 +1,97 @@
+---
+import SanityImage from '../../components/SanityImage.astro'
+import type {Project} from '../../types/content'
+import {PROJECT_KIND_LABELS, PROJECT_STATUS_LABELS} from './project-labels'
+
+interface Props {
+  project: Project
+}
+
+const {project} = Astro.props
+const image = project.logo ?? project.coverImage ?? project.legacyImage
+const kind = project.kind ? PROJECT_KIND_LABELS[project.kind] : 'Project'
+const status = project.status ? PROJECT_STATUS_LABELS[project.status] : undefined
+---
+
+<article class="card">
+  <a class="card-link" href={`/projects/${project.slug}`}>
+    <div
+      class="art"
+      style={project.legacyImagePalette?.background
+        ? `--project-background: ${project.legacyImagePalette.background}`
+        : undefined}
+    >
+      {image && <SanityImage image={image} alt="" sizes="(min-width: 60rem) 20rem, 90vw" />}
+    </div>
+    <div class="meta">
+      <div class="labels">
+        <span class="eyebrow">{kind}</span>
+        {status && <span class="pill">{status}</span>}
+      </div>
+      <h2>{project.title}</h2>
+      {project.summary && <p>{project.summary}</p>}
+    </div>
+  </a>
+</article>
+
+<style>
+  .card {
+    background: white;
+    border: 1px solid var(--line);
+    box-shadow: 0 0.2rem 0.6rem rgb(0 0 0 / 8%);
+    min-width: 0;
+    transition:
+      box-shadow 120ms ease-out,
+      transform 120ms ease-out;
+  }
+
+  .card:hover {
+    box-shadow: 0 0.8rem 2rem rgb(0 0 0 / 16%);
+    transform: translateY(-0.15rem);
+  }
+
+  .card-link {
+    display: block;
+    height: 100%;
+    text-decoration: none;
+  }
+
+  .art {
+    align-items: center;
+    aspect-ratio: 16 / 9;
+    background: var(--project-background, #eee);
+    display: flex;
+    overflow: hidden;
+  }
+
+  .art :global(figure) {
+    margin: 0;
+    width: 100%;
+  }
+
+  .art :global(img) {
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    width: 100%;
+  }
+
+  .meta {
+    padding: 1rem;
+  }
+
+  .labels {
+    align-items: center;
+    display: flex;
+    gap: 0.6rem;
+    justify-content: space-between;
+  }
+
+  h2 {
+    font-size: 1.45rem;
+    margin: 0.5rem 0;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+</style>

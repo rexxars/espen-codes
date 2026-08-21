@@ -1,0 +1,27 @@
+---
+import SfMap from '../components/SfMap'
+import {getMapPaths} from '../content/map'
+
+export const prerender = false
+
+const paths = await getMapPaths()
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex" />
+    <title>Map - Espen.Codes</title>
+  </head>
+  <body>
+    <SfMap client:only="react" {paths} />
+  </body>
+</html>
+
+<style is:global>
+  body {
+    margin: 0;
+  }
+</style>

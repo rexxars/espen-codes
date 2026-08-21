@@ -1,0 +1,184 @@
+---
+import {formatMonthAndYear} from '../../lib/date'
+import type {JsonResume} from '../../types/resume'
+
+interface Props {
+  resume: JsonResume
+}
+
+const {resume} = Astro.props
+const {basics} = resume
+const location = [basics.location?.city, basics.location?.region].filter(Boolean).join(', ')
+---
+
+<article class="resume page-width">
+  <header>
+    <div>
+      <h1>{basics.name}</h1>
+      {basics.label && <h2>{basics.label}</h2>}
+      {location && <p>{location}</p>}
+    </div>
+    <ul>
+      {
+        basics.website && (
+          <li>
+            <a href={basics.website}>{basics.website}</a>
+          </li>
+        )
+      }
+      {
+        basics.phone && (
+          <li>
+            <a href={`tel:${basics.phone}`}>{basics.phone}</a>
+          </li>
+        )
+      }
+      {
+        basics.email && (
+          <li>
+            <a href={`mailto:${basics.email}`}>{basics.email}</a>
+          </li>
+        )
+      }
+    </ul>
+    {basics.summary && <p class="summary">{basics.summary}</p>}
+  </header>
+
+  {
+    resume.work && resume.work.length > 0 && (
+      <section>
+        <h2>Professional experience</h2>
+        <ol>
+          {resume.work
+            .toSorted((left, right) => right.startDate.localeCompare(left.startDate))
+            .map((job) => (
+              <li>
+                <div class="entry-heading">
+                  <div>
+                    <h3>{job.company}</h3>
+                    <p>{job.position}</p>
+                  </div>
+                  <p>
+                    <time datetime={job.startDate}>{formatMonthAndYear(job.startDate)}</time>
+                    {' – '}
+                    <time datetime={job.endDate}>{formatMonthAndYear(job.endDate)}</time>
+                  </p>
+                </div>
+                {job.summary && <p>{job.summary}</p>}
+                {job.highlights.length > 0 && (
+                  <ul class="highlights">
+                    {job.highlights.map((highlight) => (
+                      <li>{highlight}</li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+        </ol>
+      </section>
+    )
+  }
+
+  {
+    resume.volunteer && resume.volunteer.length > 0 && (
+      <section>
+        <h2>Volunteering</h2>
+        <ol>
+          {resume.volunteer.map((entry) => (
+            <li>
+              <div class="entry-heading">
+                <div>
+                  <h3>{entry.organization}</h3>
+                  <p>{entry.position}</p>
+                </div>
+                <p>
+                  {formatMonthAndYear(entry.startDate)} – {formatMonthAndYear(entry.endDate)}
+                </p>
+              </div>
+              {entry.summary && <p>{entry.summary}</p>}
+            </li>
+          ))}
+        </ol>
+      </section>
+    )
+  }
+</article>
+
+<style>
+  .resume {
+    max-width: 58rem;
+    padding-block: clamp(2rem, 7vw, 5rem);
+  }
+
+  header {
+    background: #f5f5f5;
+    display: grid;
+    gap: 1rem 3rem;
+    grid-template-columns: 1fr auto;
+    padding: clamp(1.5rem, 5vw, 3rem);
+  }
+
+  header h1 {
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  header h2,
+  header p {
+    margin: 0.25rem 0;
+  }
+
+  header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .summary {
+    font-size: 1.08rem;
+    grid-column: 1 / -1;
+  }
+
+  section {
+    margin-top: 3rem;
+  }
+
+  section > h2 {
+    border-bottom: 2px solid currentColor;
+    padding-bottom: 0.5rem;
+  }
+
+  section > ol {
+    list-style: none;
+    padding: 0;
+  }
+
+  section > ol > li {
+    margin-top: 2rem;
+  }
+
+  .entry-heading {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+
+  .entry-heading h3,
+  .entry-heading p {
+    margin: 0;
+  }
+
+  .highlights {
+    list-style: disc;
+  }
+
+  @media (max-width: 42rem) {
+    header {
+      grid-template-columns: 1fr;
+    }
+
+    .entry-heading {
+      display: block;
+    }
+  }
+</style>

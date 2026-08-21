@@ -1,0 +1,75 @@
+---
+import {formatDate} from '../../lib/date'
+import type {Post} from '../../types/content'
+
+interface Props {
+  posts: Post[]
+}
+
+const {posts} = Astro.props
+---
+
+<div class="page-width writing">
+  <header>
+    <p class="eyebrow">Occasional notes</p>
+    <h1>Writing</h1>
+    <p>This is a garden, not a publication schedule.</p>
+  </header>
+
+  <ol>
+    {
+      posts.map((post) => (
+        <li>
+          <a href={`/blog/${post.slug}`}>
+            <time datetime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
+            <strong>{post.title}</strong>
+            {post.excerpt && <span>{post.excerpt}</span>}
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</div>
+
+<style>
+  .writing {
+    max-width: 52rem;
+    padding-block: clamp(2rem, 8vw, 6rem);
+  }
+
+  h1 {
+    font-size: clamp(3.5rem, 12vw, 8rem);
+    margin: 0;
+  }
+
+  header > p:last-child {
+    font-size: 1.25rem;
+  }
+
+  ol {
+    border-top: 2px solid currentColor;
+    list-style: none;
+    margin-top: 4rem;
+    padding: 0;
+  }
+
+  li {
+    border-bottom: 1px solid var(--line);
+  }
+
+  li a {
+    display: grid;
+    gap: 0.4rem;
+    padding: 1.25rem 0;
+    text-decoration: none;
+  }
+
+  time {
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  strong {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+  }
+</style>

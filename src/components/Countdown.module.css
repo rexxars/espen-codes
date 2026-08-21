@@ -1,0 +1,41 @@
+.root {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  inset: 0;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+}
+
+.grid {
+  inset: 0;
+  position: fixed;
+  z-index: 1;
+}
+
+.grid > * {
+  background-color: lightgreen;
+  height: 16px;
+}
+
+.numbers {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.numbers h1,
+.numbers h2 {
+  margin: 0;
+}
+
+.days {
+  font-size: clamp(7rem, 35vw, 20rem);
+}
+
+.hours {
+  font-size: 2rem;
+}

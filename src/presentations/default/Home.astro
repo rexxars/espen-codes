@@ -1,0 +1,71 @@
+---
+import SocialIcons from '../../components/SocialIcons.astro'
+import {AVATAR_ASSET_FILENAME, SANITY_DATASET, SANITY_PROJECT_ID} from '../../constants'
+
+const avatar = `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${AVATAR_ASSET_FILENAME}/espen-hovlandsdal.jpg?auto=format&q=90&w=800`
+---
+
+<div class="home page-width">
+  <figure>
+    <img src={avatar} alt="Espen Hovlandsdal" />
+  </figure>
+  <section>
+    <h1>Hi! I'm Espen.</h1>
+    <h2>This is my digital garden.</h2>
+    <p>
+      I work on developer tools at <a href="https://www.sanity.io/">Sanity.io</a>, write open-source
+      software that is downloaded around 115 million times a month, make projects that involve 3D
+      printing, electronics, woodworking, software and whatever else seems interesting. I've also
+      guested a few podcasts, and done some occasional talks at conferences and meetups.
+    </p>
+    <SocialIcons />
+  </section>
+</div>
+
+<style>
+  .home {
+    align-items: center;
+    display: grid;
+    gap: clamp(2rem, 7vw, 6rem);
+    grid-template-columns: minmax(15rem, 1fr) minmax(19rem, 1.1fr);
+    min-height: calc(100vh - 3rem);
+    padding-block: 3rem;
+  }
+
+  figure {
+    margin: 0;
+  }
+
+  img {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: block;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 8vw, 4.2rem);
+    margin: 0;
+  }
+
+  h2 {
+    font-size: clamp(1.6rem, 4vw, 2.3rem);
+    margin: 0.3rem 0 1.5rem;
+  }
+
+  p {
+    font-size: 1.18rem;
+  }
+
+  @media (max-width: 42rem) {
+    .home {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+
+    figure {
+      max-width: 22rem;
+    }
+  }
+</style>

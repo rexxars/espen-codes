@@ -1,0 +1,53 @@
+---
+import PortableText from '../../components/PortableText.astro'
+import SanityImage from '../../components/SanityImage.astro'
+import {formatDate} from '../../lib/date'
+import type {Post} from '../../types/content'
+
+interface Props {
+  post: Post
+}
+
+const {post} = Astro.props
+---
+
+<article class="post page-width">
+  <header>
+    <time datetime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
+    <h1>{post.title}</h1>
+    {post.excerpt && <p>{post.excerpt}</p>}
+  </header>
+  {
+    post.mainImage && (
+      <SanityImage image={post.mainImage} alt="" sizes="(min-width: 60rem) 48rem, 100vw" />
+    )
+  }
+  <div class="prose">
+    <PortableText value={post.body} />
+  </div>
+</article>
+
+<style>
+  .post {
+    max-width: 52rem;
+    padding-block: clamp(2rem, 8vw, 6rem);
+  }
+
+  header {
+    margin-bottom: 3rem;
+  }
+
+  time {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  h1 {
+    font-size: clamp(2.8rem, 10vw, 6rem);
+    margin: 0.5rem 0 1rem;
+  }
+
+  header p {
+    font-size: 1.3rem;
+  }
+</style>

@@ -1,0 +1,29 @@
+---
+import type {GetStaticPaths} from 'astro'
+
+import {getProjects} from '../../content/projects'
+import {getPresentation} from '../../presentations'
+import type {Project} from '../../types/content'
+
+interface Props {
+  project: Project
+}
+
+export const prerender = true
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const projects = await getProjects()
+
+  return projects.map((project) => ({
+    params: {slug: project.slug},
+    props: {project},
+  }))
+}
+
+const {project} = Astro.props
+const {Project: ProjectPage, Shell} = getPresentation()
+---
+
+<Shell title={`${project.title} - Espen.Codes`} description={project.summary}>
+  <ProjectPage {project} />
+</Shell>

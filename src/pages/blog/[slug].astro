@@ -1,0 +1,25 @@
+---
+import type {GetStaticPaths} from 'astro'
+
+import {getPosts} from '../../content/posts'
+import {getPresentation} from '../../presentations'
+import type {Post} from '../../types/content'
+
+interface Props {
+  post: Post
+}
+
+export const prerender = true
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await getPosts()
+  return posts.map((post) => ({params: {slug: post.slug}, props: {post}}))
+}
+
+const {post} = Astro.props
+const {BlogPost, Shell} = getPresentation()
+---
+
+<Shell title={`${post.title} - Espen.Codes`} description={post.excerpt}>
+  <BlogPost {post} />
+</Shell>

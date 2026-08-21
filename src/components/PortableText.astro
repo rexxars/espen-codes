@@ -1,0 +1,25 @@
+---
+import {PortableText as PortableTextRenderer} from 'astro-portabletext'
+
+import type {PortableTextValue} from '../types/content'
+import CodeBlock from './CodeBlock.astro'
+import Embed from './Embed.astro'
+import PortableTextImage from './PortableTextImage.astro'
+
+interface Props {
+  value: PortableTextValue
+}
+
+const {value} = Astro.props
+const components = {
+  type: {
+    codeBlock: CodeBlock,
+    embed: Embed,
+    image: PortableTextImage,
+  },
+}
+---
+
+<div class="portable-text">
+  <PortableTextRenderer {components} value={value} />
+</div>

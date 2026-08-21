@@ -45,6 +45,12 @@ export const postType = defineType({
       type: 'datetime',
     },
     {
+      name: 'excerpt',
+      title: 'Excerpt',
+      type: 'text',
+      rows: 3,
+    },
+    {
       name: 'body',
       title: 'Body',
       type: 'portableText',

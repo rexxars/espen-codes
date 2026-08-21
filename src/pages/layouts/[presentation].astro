@@ -1,0 +1,24 @@
+---
+import type {GetStaticPaths} from 'astro'
+
+import {getPresentation, PRESENTATION_NAMES} from '../../presentations'
+
+interface Props {
+  presentation: string
+}
+
+export const prerender = true
+
+export const getStaticPaths: GetStaticPaths = () =>
+  PRESENTATION_NAMES.map((presentation) => ({
+    params: {presentation},
+    props: {presentation},
+  }))
+
+const {presentation} = Astro.props
+const {Home, Shell} = getPresentation(presentation)
+---
+
+<Shell title={`${presentation} layout - Espen.Codes`}>
+  <Home />
+</Shell>

@@ -1,0 +1,44 @@
+---
+import PortableText from '../components/PortableText.astro'
+import {KOKOS_ASSET_FILENAME, SANITY_DATASET, SANITY_PROJECT_ID} from '../constants'
+import {getKokos} from '../content/kokos'
+import {getPresentation} from '../presentations'
+
+export const prerender = true
+
+const kokos = await getKokos()
+const {Shell} = getPresentation()
+const image = `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${KOKOS_ASSET_FILENAME}/kokos-the-schnauzer.jpg?fm=jpg&bg=ceccca&q=90&rect=70,150,4362,4142&w=1200`
+---
+
+<Shell title="Kokos - Espen.Codes">
+  <div class="kokos page-width">
+    <img src={image} alt="Kokos the miniature schnauzer" />
+    <div class="prose">
+      {kokos ? <PortableText value={kokos.bio} /> : <h1>Kokos</h1>}
+    </div>
+  </div>
+</Shell>
+
+<style>
+  .kokos {
+    align-items: center;
+    display: grid;
+    gap: clamp(2rem, 7vw, 6rem);
+    grid-template-columns: minmax(18rem, 1.25fr) minmax(16rem, 1fr);
+    padding-block: clamp(2rem, 7vw, 5rem);
+  }
+
+  img {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  @media (max-width: 45rem) {
+    .kokos {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

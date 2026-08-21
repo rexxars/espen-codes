@@ -1,0 +1,111 @@
+---
+import './styles.css'
+
+interface Props {
+  description?: string | undefined
+  title?: string | undefined
+}
+
+const {
+  description = "Espen Hovlandsdal's home on the internet. Writing, projects, and other experiments.",
+  title = 'Espen.Codes',
+} = Astro.props
+const pathname = Astro.url.pathname
+
+function isActive(href: string): boolean {
+  return href === '/' ? pathname === href : pathname.startsWith(href)
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicons/favicon.svg" type="image/svg+xml" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="masthead">
+      <div class="masthead-inner">
+        <a class="brand" href="/">Espen<span>.</span>Codes</a>
+        <nav aria-label="Main navigation">
+          <a class:list={{active: isActive('/')}} href="/">About</a>
+          <!-- <a class:list={{active: isActive('/blog')}} href="/blog">Writing</a>  -->
+          <a class:list={{active: isActive('/projects')}} href="/projects">Projects</a>
+          <a class:list={{active: isActive('/resume')}} href="/resume">Résumé</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style>
+  .masthead {
+    background: var(--brand);
+    color: white;
+  }
+
+  .masthead-inner {
+    align-items: stretch;
+    display: flex;
+    justify-content: space-between;
+    margin-inline: auto;
+    max-width: var(--page-width);
+    min-height: 3rem;
+  }
+
+  .brand {
+    align-items: center;
+    display: flex;
+    font-size: 1.45rem;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+  }
+
+  nav {
+    display: flex;
+  }
+
+  nav a {
+    align-items: center;
+    display: flex;
+    padding: 0.5rem 0.85rem;
+    text-decoration: none;
+  }
+
+  nav a:hover {
+    background: var(--line);
+    color: var(--brand);
+  }
+
+  nav a.active {
+    background: var(--canvas);
+    color: var(--brand);
+  }
+
+  @media (max-width: 42rem) {
+    .masthead-inner {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .brand span {
+      display: none;
+    }
+
+    nav {
+      overflow-x: auto;
+    }
+
+    nav a {
+      flex: 1;
+      justify-content: center;
+      padding-inline: 0.6rem;
+    }
+  }
+</style>

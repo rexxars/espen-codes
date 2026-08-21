@@ -1,9 +1,6 @@
-import {PluginFactory, SchemaTypeDefinition} from 'sanity'
+import type {PluginFactory, SchemaTypeDefinition} from 'sanity'
 import {schemaTypes} from './schema'
-
-export interface JsonResumePluginOptions {
-  schemaTypePrefix?: string
-}
+import type {JsonResumePluginOptions} from './types'
 
 const maybePrefixTypes = (() => {
   let lastPrefix = ''

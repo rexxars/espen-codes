@@ -1,0 +1,13 @@
+---
+import {getResume} from '../content/resume'
+import {getPresentation} from '../presentations'
+
+export const prerender = true
+
+const resume = await getResume()
+const {Resume, Shell} = getPresentation()
+---
+
+<Shell title="Résumé - Espen.Codes" description={resume?.basics.summary}>
+  {resume ? <Resume {resume} /> : <p>Résumé not found.</p>}
+</Shell>

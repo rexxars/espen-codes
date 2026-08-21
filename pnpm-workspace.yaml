@@ -1,0 +1,29 @@
+allowBuilds:
+  esbuild: true
+  workerd: true
+minimumReleaseAgeExclude:
+  - '@cloudflare/workers-types@5.20260819.1'
+  - '@astrojs/cloudflare@14.2.3'
+  - '@astrojs/internal-helpers@0.10.4'
+  - '@astrojs/markdown-satteri@0.3.7'
+  - '@astrojs/react@6.0.4'
+  - '@bruits/satteri-darwin-arm64@0.10.3'
+  - '@bruits/satteri-darwin-x64@0.10.3'
+  - '@bruits/satteri-linux-arm64-gnu@0.10.3'
+  - '@bruits/satteri-linux-arm64-musl@0.10.3'
+  - '@bruits/satteri-linux-x64-gnu@0.10.3'
+  - '@bruits/satteri-linux-x64-musl@0.10.3'
+  - '@bruits/satteri-wasm32-wasi@0.10.3'
+  - '@bruits/satteri-win32-arm64-msvc@0.10.3'
+  - '@bruits/satteri-win32-x64-msvc@0.10.3'
+  - '@sanity/client@8.2.0'
+  - astro@7.2.4
+  - satteri@0.10.3
+  - '@sanity/astro@3.5.1'
+peerDependencyRules:
+  allowedVersions:
+    '@sanity/import@6>@sanity/client': '8'
+    '@sanity/preview-url-secret>@sanity/client': '8'
+    '@sanity/visual-editing-csm>@sanity/client': '8'
+    '@sanity/visual-editing-types>@sanity/client': '8'
+    '@sanity/visual-editing@5>@sanity/client': '8'

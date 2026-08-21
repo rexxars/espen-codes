@@ -1,0 +1,42 @@
+---
+import type {Image} from '@sanity/types'
+
+import {urlForImage} from '../sanity/image'
+
+interface Props {
+  alt: string
+  caption?: string | undefined
+  image: Image
+  sizes?: string | undefined
+}
+
+const {alt, caption, image, sizes = '(min-width: 60rem) 48rem, 100vw'} = Astro.props
+const widths = [480, 800, 1200, 1600]
+const src = urlForImage(image).width(1200).auto('format').quality(90).url()
+const srcset = widths
+  .map((width) => `${urlForImage(image).width(width).auto('format').quality(90).url()} ${width}w`)
+  .join(', ')
+---
+
+<figure>
+  <img {alt} {sizes} {src} {srcset} loading="lazy" decoding="async" />
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  figure {
+    margin: 2rem 0;
+  }
+
+  img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+  }
+
+  figcaption {
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    opacity: 0.72;
+  }
+</style>

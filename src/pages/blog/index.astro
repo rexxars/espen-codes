@@ -1,0 +1,13 @@
+---
+import {getPosts} from '../../content/posts'
+import {getPresentation} from '../../presentations'
+
+export const prerender = true
+
+const posts = await getPosts()
+const {BlogIndex, Shell} = getPresentation()
+---
+
+<Shell title="Writing - Espen.Codes" description="Notes from Espen's digital garden.">
+  <BlogIndex {posts} />
+</Shell>

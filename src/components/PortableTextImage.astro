@@ -1,0 +1,12 @@
+---
+import type {PortableTextImage} from '../types/content'
+import SanityImage from './SanityImage.astro'
+
+interface Props {
+  node: PortableTextImage
+}
+
+const {node} = Astro.props
+---
+
+<SanityImage image={node} alt={node.alt} caption={node.caption} />

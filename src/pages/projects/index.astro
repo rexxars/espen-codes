@@ -1,0 +1,13 @@
+---
+import {getProjects} from '../../content/projects'
+import {getPresentation} from '../../presentations'
+
+export const prerender = true
+
+const projects = await getProjects()
+const {Projects, Shell} = getPresentation()
+---
+
+<Shell title="Projects - Espen.Codes" description="Things Espen has made.">
+  <Projects {projects} />
+</Shell>

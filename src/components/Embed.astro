@@ -1,0 +1,38 @@
+---
+interface Props {
+  node: {
+    caption?: string
+    provider: string
+    url: string
+  }
+}
+
+const {node} = Astro.props
+---
+
+<figure class="embed" data-provider={node.provider}>
+  <a href={node.url} rel="noopener noreferrer">
+    <span>{node.provider}</span>
+    <strong>{node.caption ?? node.url}</strong>
+  </a>
+</figure>
+
+<style>
+  .embed {
+    border: 2px solid currentColor;
+    margin: 2rem 0;
+    padding: 1rem;
+  }
+
+  a {
+    display: grid;
+    gap: 0.25rem;
+    text-decoration: none;
+  }
+
+  span {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+</style>

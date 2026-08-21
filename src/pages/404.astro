@@ -1,0 +1,26 @@
+---
+import {getPresentation} from '../presentations'
+
+export const prerender = true
+
+const {Shell} = getPresentation()
+---
+
+<Shell title="Not found - Espen.Codes">
+  <div class="page-width not-found">
+    <p class="eyebrow">404</p>
+    <h1>Nothing growing here.</h1>
+    <p><a href="/">Go back to the garden</a></p>
+  </div>
+</Shell>
+
+<style>
+  .not-found {
+    padding-block: 15vh;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 10vw, 7rem);
+    margin: 0;
+  }
+</style>

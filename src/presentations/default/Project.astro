@@ -1,0 +1,175 @@
+---
+import PortableText from '../../components/PortableText.astro'
+import SanityImage from '../../components/SanityImage.astro'
+import {formatDate} from '../../lib/date'
+import type {Project} from '../../types/content'
+import {PROJECT_KIND_LABELS, PROJECT_STATUS_LABELS} from './project-labels'
+
+interface Props {
+  project: Project
+}
+
+const {project} = Astro.props
+const reflections = project.reflections
+const hero = project.coverImage ?? project.logo ?? project.legacyImage
+const kind = project.kind ? PROJECT_KIND_LABELS[project.kind] : 'Project'
+const status = project.status ? PROJECT_STATUS_LABELS[project.status] : undefined
+const primaryUrl = project.websiteUrl ?? project.githubUrl
+---
+
+<article class="project page-width">
+  <header>
+    <div class="labels">
+      <span class="eyebrow">{kind}</span>
+      {status && <span class="pill">{status}</span>}
+    </div>
+    <h1>{project.title}</h1>
+    {project.summary && <p class="summary">{project.summary}</p>}
+    {project.statusNote && <p class="status-note">{project.statusNote}</p>}
+  </header>
+
+  {
+    hero && (
+      <div class="hero">
+        <SanityImage image={hero} alt={project.title} sizes="(min-width: 70rem) 66rem, 100vw" />
+      </div>
+    )
+  }
+
+  <div class="project-body">
+    <aside>
+      {
+        project.releasedAt && (
+          <p>
+            <br />
+            {formatDate(project.releasedAt)}
+          </p>
+        )
+      }
+      {
+        project.completedAt && (
+          <p>
+            <br />
+            {formatDate(project.completedAt)}
+          </p>
+        )
+      }
+      {
+        primaryUrl && (
+          <p>
+            <a href={primaryUrl}>Visit project ↗</a>
+          </p>
+        )
+      }
+      {
+        project.links.map((link) => (
+          <p>
+            <a href={link.url}>{link.label} ↗</a>
+          </p>
+        ))
+      }
+    </aside>
+
+    <div class="prose">
+      {project.body ? <PortableText value={project.body} /> : <p>{project.summary}</p>}
+
+      {
+        project.artifacts.length > 0 && (
+          <section>
+            <h2>Artifacts</h2>
+            <ul>
+              {project.artifacts.map((artifact) => (
+                <li>
+                  <a href={artifact.url}>{artifact.label}</a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      {
+        reflections.length > 0 && (
+          <section>
+            <h2>Reflections</h2>
+            {reflections.map((reflection) => (
+              <article class="reflection">
+                <p class="eyebrow">{formatDate(reflection.publishedAt)}</p>
+                <h3>{reflection.title}</h3>
+                {reflection.summary && <p>{reflection.summary}</p>}
+                <PortableText value={reflection.body} />
+              </article>
+            ))}
+          </section>
+        )
+      }
+    </div>
+  </div>
+</article>
+
+<style>
+  .project {
+    padding-block: clamp(2rem, 7vw, 5rem);
+  }
+
+  header {
+    max-width: 58rem;
+  }
+
+  .labels {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 10vw, 7rem);
+    margin: 0.5rem 0;
+  }
+
+  .summary {
+    font-size: clamp(1.2rem, 3vw, 1.7rem);
+  }
+
+  .status-note {
+    border-left: 0.25rem solid var(--brand);
+    padding-left: 1rem;
+  }
+
+  .hero {
+    margin-block: 3rem;
+  }
+
+  .hero :global(figure) {
+    margin: 0;
+  }
+
+  .project-body {
+    align-items: start;
+    display: grid;
+    gap: clamp(2rem, 8vw, 7rem);
+    grid-template-columns: minmax(10rem, 14rem) minmax(0, 48rem);
+  }
+
+  aside {
+    border-top: 2px solid currentColor;
+    font-size: 0.9rem;
+  }
+
+  .reflection {
+    border-top: 1px solid var(--line);
+    margin-top: 2rem;
+    padding-top: 1rem;
+  }
+
+  .reflection h3 {
+    font-size: 1.6rem;
+    margin-top: 0;
+  }
+
+  @media (max-width: 42rem) {
+    .project-body {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

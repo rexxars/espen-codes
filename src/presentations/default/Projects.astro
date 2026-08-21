@@ -1,0 +1,97 @@
+---
+import type {Project} from '../../types/content'
+import ProjectCard from './ProjectCard.astro'
+
+interface Props {
+  projects: Project[]
+}
+
+const {projects} = Astro.props
+const selectedProjects = projects.filter((project) => project.featured)
+const featured = selectedProjects.length > 0 ? selectedProjects : projects.slice(0, 6)
+const featuredIds = new Set(featured.map((project) => project._id))
+const archive = projects.filter((project) => !featuredIds.has(project._id))
+---
+
+<div class="page-width projects">
+  <header>
+    <p class="eyebrow">Software, sawdust, solder, and plastic</p>
+    <h1>Projects</h1>
+    <p>
+      Things I have made, maintained, finished, abandoned, learned from, or may still be poking at.
+    </p>
+  </header>
+
+  <section>
+    <h2>Currently proud of</h2>
+    <div class="featured">
+      {featured.map((project) => <ProjectCard {project} />)}
+    </div>
+  </section>
+
+  {
+    archive.length > 0 && (
+      <section>
+        <h2>May or may not be proud of</h2>
+        <div class="archive">
+          {archive.map((project) => (
+            <ProjectCard {project} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+</div>
+
+<style>
+  .projects {
+    padding-block: clamp(2rem, 7vw, 5rem);
+  }
+
+  header {
+    max-width: 48rem;
+  }
+
+  h1 {
+    font-size: clamp(3.5rem, 11vw, 8rem);
+    margin: 0;
+  }
+
+  header > p:last-child {
+    font-size: 1.25rem;
+  }
+
+  section {
+    margin-top: 4rem;
+  }
+
+  section > h2 {
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .featured {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  }
+
+  .archive {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media (max-width: 52rem) {
+    .archive {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 34rem) {
+    .archive {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
