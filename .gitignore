@@ -7,3 +7,4 @@ dist
 .pnpm-store
 .playwright-cli
 .env.local
+.DS_Store

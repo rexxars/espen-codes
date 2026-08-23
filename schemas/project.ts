@@ -120,7 +120,8 @@ export const projectType = defineType({
     defineField({
       name: 'logo',
       title: 'Logo',
-      description: 'A project mark or compact identifying image.',
+      description:
+        'Project identity artwork, not an illustration of the whole project. Prefer a simple, bold mark or short logotype centered on a flat or subtle gradient background, using a small, project-specific palette with strong contrast. It must remain recognizable at 320 × 180: avoid explanatory copy, diagrams, scenes, fine detail, and decorative clutter. Prefer a 16:9 SVG with a 1600 × 900 viewBox so it stays sharp at every size, and keep essential artwork away from the edges. Raster images are supported; use the hotspot to guide cropping.',
       type: 'image',
       options: {hotspot: true},
     }),

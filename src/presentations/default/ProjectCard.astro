@@ -11,10 +11,11 @@ const {project} = Astro.props
 const image = project.logo ?? project.coverImage ?? project.legacyImage
 const kind = project.kind ? PROJECT_KIND_LABELS[project.kind] : 'Project'
 const status = project.status ? PROJECT_STATUS_LABELS[project.status] : undefined
+const href = project.websiteUrl
 ---
 
-<article class="card">
-  <a class="card-link" href={`/projects/${project.slug}`}>
+<article class:list={{card: true, linked: Boolean(href)}}>
+  <a class="card-link" href={href}>
     <div
       class="art"
       style={project.legacyImagePalette?.background
@@ -45,7 +46,7 @@ const status = project.status ? PROJECT_STATUS_LABELS[project.status] : undefine
       transform 120ms ease-out;
   }
 
-  .card:hover {
+  .linked:hover {
     box-shadow: 0 0.8rem 2rem rgb(0 0 0 / 16%);
     transform: translateY(-0.15rem);
   }

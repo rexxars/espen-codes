@@ -26,6 +26,7 @@ const image = `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASE
     display: grid;
     gap: clamp(2rem, 7vw, 6rem);
     grid-template-columns: minmax(18rem, 1.25fr) minmax(16rem, 1fr);
+    min-height: calc(100vh - 3rem);
     padding-block: clamp(2rem, 7vw, 5rem);
   }
 
@@ -39,6 +40,7 @@ const image = `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASE
   @media (max-width: 45rem) {
     .kokos {
       grid-template-columns: 1fr;
+      min-height: auto;
     }
   }
 </style>
