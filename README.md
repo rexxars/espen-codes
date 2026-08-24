@@ -22,7 +22,9 @@ pnpm preview
 pnpm deploy
 ```
 
-Copy `.dev.vars.example` to `.dev.vars` and add `DIARY_API_TOKEN` to load the private activity data used by `/map`. Add the same value as a Cloudflare Worker secret in production.
+Copy `.dev.vars.example` to `.dev.vars` and add `DIARY_API_TOKEN` to load and update the
+private activity data used by `/map`. Add `HEALTH_AUTO_EXPORT_TOKEN` as a separate random bearer
+token for workout imports. Add both values as Cloudflare Worker secrets in production.
 
 For local Studio access, add `http://localhost:3333` to the Sanity project's CORS origins.
 
@@ -30,11 +32,17 @@ For local Studio access, add `http://localhost:3333` to the Sanity project's COR
 
 - `/`, `/projects/*`, `/blog/*`, `/resume`, `/bread`, `/kokos`, and `/countdown` are statically generated.
 - `/map` is rendered by the Worker because it reads a private Sanity dataset on every page request.
+- `/api/health/workouts` accepts authenticated Health Auto Export workout JSON and writes routes to
+  the diary dataset.
 - `/api/spacer` is an Astro API route running in the Worker.
 - `/studio/*` embeds Sanity Studio and uses its browser-history routes through the Worker.
 - `/layouts/default` and `/layouts/minimal` preview the available presentation shells.
 
-The old Strava importer is intentionally not part of this migration. `/map` remains a read-only view of the existing diary dataset until its ingestion path is replaced.
+The old Strava importer is intentionally not part of this migration. New activity routes are sent
+from Health Auto Export to `/api/health/workouts` using an `Authorization: Bearer <token>` header.
+Configure the automation for workouts, JSON export version 2, route data enabled, and batch
+requests enabled. Workout metrics can remain disabled because the map importer only uses the route,
+name, start time, and distance.
 
 ## Swappable presentations
 

@@ -4,5 +4,6 @@
 declare namespace Cloudflare {
   interface Env {
     DIARY_API_TOKEN?: string
+    HEALTH_AUTO_EXPORT_TOKEN?: string
   }
 }

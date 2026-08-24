@@ -11,7 +11,8 @@
     "deploy": "pnpm build && wrangler deploy",
     "dev": "astro dev",
     "format": "prettier --write .",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "test": "node --test tests/*.test.ts"
   },
   "repository": {
     "type": "git",
