@@ -51,7 +51,7 @@ export const projectType = defineType({
     defineField({
       name: 'status',
       title: 'Status',
-      description: 'The project\'s current state.',
+      description: "The project's current state.",
       type: 'string',
       options: {
         list: [

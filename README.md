@@ -35,7 +35,7 @@ For local Studio access, add `http://localhost:3333` to the Sanity project's COR
 - `/api/health/workouts` accepts authenticated Health Auto Export workout JSON and writes routes to
   the diary dataset.
 - `/api/spacer` is an Astro API route running in the Worker.
-- `/studio/*` embeds Sanity Studio and uses its browser-history routes through the Worker.
+- `/studio/content/*` opens the Espen.Codes Sanity workspace, while `/studio/workouts/*` opens the activity workspace for the diary dataset.
 - `/layouts/default` and `/layouts/minimal` preview the available presentation shells.
 
 The old Strava importer is intentionally not part of this migration. New activity routes are sent
