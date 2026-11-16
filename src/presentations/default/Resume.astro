@@ -27,13 +27,6 @@ const location = [basics.location?.city, basics.location?.region].filter(Boolean
         )
       }
       {
-        basics.phone && (
-          <li>
-            <a href={`tel:${basics.phone}`}>{basics.phone}</a>
-          </li>
-        )
-      }
-      {
         basics.email && (
           <li>
             <a href={`mailto:${basics.email}`}>{basics.email}</a>
